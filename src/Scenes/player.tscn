@@ -1,8 +1,12 @@
-[gd_scene load_steps=22 format=4 uid="uid://csg1tid2hsgm8"]
+[gd_scene load_steps=38 format=4 uid="uid://csg1tid2hsgm8"]
 
 [ext_resource type="Script" uid="uid://bypt1wm4delsh" path="res://src/Scripts/player.gd" id="1_630vu"]
 [ext_resource type="Texture2D" uid="uid://mg8p8sqbe5ui" path="res://src/Assets/Models/Studio/photography_studio_equipment_0.png" id="2_nuidu"]
+[ext_resource type="PackedScene" uid="uid://cs125b0te6j3d" path="res://src/Assets/Models/laptop.glb" id="3_waosb"]
+[ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="5_k2co4"]
+[ext_resource type="Script" uid="uid://d0mvmypjnjgcx" path="res://src/Scripts/button.gd" id="5_lq0qa"]
 [ext_resource type="Shader" uid="uid://bn0554uot455c" path="res://src/vignette_effect.gdshader" id="5_sm553"]
+[ext_resource type="PackedScene" uid="uid://m26oole26jib" path="res://src/Assets/Models/Studio/desk.glb" id="5_vhadf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycbtq"]
 resource_name = "LowPolyModelsWorld"
@@ -45,6 +49,16 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_i21tj")
 
 [sub_resource type="BoxMesh" id="BoxMesh_nuidu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3f673"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqylb"]
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xgp4"]
 resource_name = "Clip"
@@ -156,20 +170,118 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jo6yi")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lq0qa"]
+[sub_resource type="BoxMesh" id="BoxMesh_sm553"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sm553"]
+albedo_color = Color(0, 0, 1, 1)
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+emission_energy_multiplier = 1.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lq0qa"]
+albedo_color = Color(0.650128, 0.650128, 0.650128, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wquk2"]
+albedo_color = Color(0, 1, 0, 1)
+metallic = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="Animation" id="Animation_lq0qa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProgressBar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0100243, 0.223541, 0.00701699)]
+}
+
+[sub_resource type="Animation" id="Animation_sm553"]
+resource_name = "progress_bar"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProgressBar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0100243, 0.223541, 0.00701699), Vector3(1.33, 0.224, 0.007)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wquk2"]
+_data = {
+&"RESET": SubResource("Animation_lq0qa"),
+&"progress_bar": SubResource("Animation_sm553")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k2co4"]
+size = Vector3(26.6007, 4.52795, 8.68891)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm553"]
 shader = ExtResource("5_sm553")
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/scanline_count = 1000.0
 shader_parameter/scanline_opacity = 0.06
-shader_parameter/rgb_split = 0.001
+shader_parameter/rgb_split = 0.0
 shader_parameter/distortion_amount = 0.03
-shader_parameter/ui_color = Color(1, 1, 1, 0.388235)
+shader_parameter/ui_color = Color(1, 1, 1, 0.392157)
 shader_parameter/show_crosshair = true
-shader_parameter/crosshair_size = 0.02
+shader_parameter/crosshair_size = 0.03
 shader_parameter/line_thickness = 0.002
 shader_parameter/show_borders = true
 shader_parameter/border_margin = 0.05
-shader_parameter/border_length = 0.05
+shader_parameter/border_length = 0.08
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lq0qa"]
+shader = ExtResource("5_sm553")
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/scanline_count = 1000.0
+shader_parameter/scanline_opacity = 0.06
+shader_parameter/rgb_split = 0.003
+shader_parameter/distortion_amount = 0.03
+shader_parameter/ui_color = Color(1, 1, 1, 1)
+shader_parameter/show_crosshair = false
+shader_parameter/crosshair_size = 0.05
+shader_parameter/line_thickness = 0.002
+shader_parameter/show_borders = true
+shader_parameter/border_margin = 0.05
+shader_parameter/border_length = 0.03
 
 [sub_resource type="Animation" id="Animation_waosb"]
 length = 0.001
@@ -245,6 +357,30 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector3(1.5708, 0, -1.5708)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%LaptopEffect:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%CameraEffect:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_f8bxg"]
 resource_name = "camera"
@@ -284,6 +420,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-0.0122222, -0.0079952, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%CameraEffect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.571403, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_nuidu"]
@@ -326,11 +474,52 @@ tracks/2/keys = {
 "values": [Vector3(1.5708, 0, -1.5708), Vector3(1.5708, 0, -1.5708), Vector3(-0.670206, -1.5708, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_vhadf"]
+resource_name = "laptop"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.38),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(-0.0720821, 1.5708, -3.15628e-09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [75.0, 22.4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%LaptopEffect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.569829, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vhadf"]
 _data = {
 &"RESET": SubResource("Animation_waosb"),
 &"camera": SubResource("Animation_f8bxg"),
-&"clipboard": SubResource("Animation_nuidu")
+&"clipboard": SubResource("Animation_nuidu"),
+&"laptop": SubResource("Animation_vhadf")
 }
 
 [node name="Player" type="Node3D"]
@@ -349,22 +538,17 @@ transform = Transform3D(-1.63293, 0.118884, 1.66249, 0.169427, 2.32717, -5.14461
 mesh = SubResource("ArrayMesh_k1q61")
 skeleton = NodePath("")
 
-[node name="WhiteLight" type="OmniLight3D" parent="CameraModel"]
-transform = Transform3D(3.33334, 8.04663e-07, -1.40667e-05, 0, 3.33333, 8.34465e-07, -8.34465e-07, 4.47035e-08, 3.33334, -0.0518929, -0.0503143, -0.0893355)
-light_energy = 0.01
-light_specular = 16.0
-shadow_enabled = true
-omni_attenuation = 1.404
-
-[node name="RedLight" type="OmniLight3D" parent="CameraModel"]
-transform = Transform3D(3.33334, 8.04663e-07, -1.40667e-05, 0, 3.33333, 8.34465e-07, -9.53674e-07, 4.47035e-08, 3.33334, -0.0887918, 0.0778746, -0.0646103)
-light_color = Color(1, 0, 0.329412, 1)
-light_energy = 0.1
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CameraModel"]
 transform = Transform3D(-0.130085, 0.00618902, -0.00878964, 3.96757e-08, 0.121151, 0.000911979, 0.128111, 0.00628437, -0.00892509, -0.0388037, -0.0468489, -0.0836384)
 mesh = SubResource("BoxMesh_nuidu")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3f673")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CameraModel"]
+transform = Transform3D(-0.0281107, 0.0018136, -0.00878962, 8.87449e-09, 0.0355014, 0.000911977, 0.0276842, 0.00184154, -0.00892507, -0.0777441, 0.0817124, -0.0528958)
+mesh = SubResource("BoxMesh_nuidu")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_cqylb")
 
 [node name="ClipBoard" type="Node3D" parent="."]
 transform = Transform3D(-1.81e-07, 0.05, 0, 1.81e-07, 6.55216e-13, -0.05, -0.05, -1.81e-07, -1.81e-07, 0.296, -0.303, 0.01)
@@ -383,6 +567,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 7.10543e-15, 0, -7.10543e-15, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_llcq8")
 skeleton = NodePath("")
 
+[node name="Laptop" parent="." instance=ExtResource("3_waosb")]
+transform = Transform3D(-7.19064e-05, 0, 0.00799968, 0, 0.008, 0, -0.00799968, 0, -7.19064e-05, -0.365428, -0.118148, -0.00290751)
+
+[node name="Desk" parent="Laptop" instance=ExtResource("5_vhadf")]
+transform = Transform3D(124.995, 0, -1.12353, 0, 125, 0, 1.12353, 0, 124.995, -1.25929, -21.9893, -0.49435)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Laptop"]
+transform = Transform3D(29.4877, -0.00948832, -0.000550811, 0.0160361, 17.2408, -0.000258271, 0.109776, 0.0300509, 0.148001, -0.0499547, 10.7725, -10.638)
+mesh = SubResource("BoxMesh_sm553")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_sm553")
+
+[node name="LightButton" type="Area3D" parent="Laptop"]
+transform = Transform3D(1, 0, 1.86265e-09, 0, 1, 0, -1.86265e-09, 0, 1, 5.28162, 0, 0.0474777)
+script = ExtResource("5_lq0qa")
+
+[node name="Label3D" type="Label3D" parent="Laptop/LightButton"]
+transform = Transform3D(20, 0, 5.96046e-08, 0, 20, 0, -5.96046e-08, 0, 20, -5.48325, 14.7685, -10.5161)
+texture_filter = 2
+text = "LIGHT"
+font = ExtResource("5_k2co4")
+font_size = 35
+outline_size = 0
+uppercase = true
+
+[node name="ProgressBarBorder" type="MeshInstance3D" parent="Laptop/LightButton/Label3D"]
+transform = Transform3D(1.33849, -0.000122731, -2.75629e-05, 0.000727903, 0.223009, -1.2924e-05, 0.00498291, 0.000388707, 0.00740604, 0.00756728, 0.0113945, -0.00664473)
+mesh = SubResource("BoxMesh_sm553")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_lq0qa")
+
+[node name="ProgressBar" type="MeshInstance3D" parent="Laptop/LightButton/Label3D"]
+transform = Transform3D(0.0100242, -0.000123019, -2.61161e-05, 5.45151e-06, 0.223541, -1.22448e-05, 3.73184e-05, 0.000389629, 0.00701693, 0.00755367, 0.0113945, -0.00513005)
+visible = false
+mesh = SubResource("BoxMesh_sm553")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_wquk2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Laptop/LightButton/Label3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_wquk2")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laptop/LightButton"]
+transform = Transform3D(0.999973, 0, 2.10479e-07, 0, 0.999973, 0, -2.10479e-07, 0, 0.999973, -5.41616, 14.9707, -7.57383)
+shape = SubResource("BoxShape3D_k2co4")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="UI"]
@@ -392,8 +623,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="CameraEffect" type="ColorRect" parent="UI/Control"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_sm553")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LaptopEffect" type="ColorRect" parent="UI/Control"]
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_lq0qa")
@@ -401,6 +645,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 195.0
+offset_top = 50.0
+offset_right = -217.0
+offset_bottom = -131.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -410,3 +658,7 @@ root_node = NodePath("../Camera")
 libraries = {
 &"": SubResource("AnimationLibrary_vhadf")
 }
+
+[connection signal="input_event" from="Laptop/LightButton" to="Laptop/LightButton" method="_on_input_event"]
+[connection signal="mouse_entered" from="Laptop/LightButton" to="Laptop/LightButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Laptop/LightButton" to="Laptop/LightButton" method="_on_mouse_exited"]

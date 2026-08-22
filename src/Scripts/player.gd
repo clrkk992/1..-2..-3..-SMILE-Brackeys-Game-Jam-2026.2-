@@ -7,7 +7,7 @@ extends Node3D
 enum STATE {
 	CAMERA,
 	CHECKLIST,
-	BUTTONS
+	LAPTOP
 }
 
 var current_state = STATE.CAMERA
@@ -20,8 +20,18 @@ func _ready() -> void:
 		
 func _input(event):
 	if current_state == STATE.CAMERA:
+		if event.is_action_pressed("move_left"):
+			animation_player.play_backwards("camera")
+			await animation_player.animation_finished
+			
+			target_rotation += 90.0
+			tween_rotation()
+			
+			animation_player.play("laptop")
+			
+			current_state = STATE.LAPTOP
+			
 		if event.is_action_pressed("move_right"):
-			camera_effect.visible = false
 			animation_player.play_backwards("camera")
 			await animation_player.animation_finished
 			
@@ -41,8 +51,18 @@ func _input(event):
 			tween_rotation()
 			
 			animation_player.play("camera")
+			
+			current_state = STATE.CAMERA
+			
+	if current_state == STATE.LAPTOP:
+		if event.is_action_pressed("move_right"):
+			animation_player.play_backwards("laptop")
 			await animation_player.animation_finished
-			camera_effect.visible = true
+			
+			target_rotation -= 90.0
+			tween_rotation()
+			
+			animation_player.play("camera")
 			
 			current_state = STATE.CAMERA
 			

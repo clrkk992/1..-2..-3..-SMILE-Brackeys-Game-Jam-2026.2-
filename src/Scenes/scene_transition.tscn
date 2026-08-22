@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://l6w1i2laxpbn"]
+
+[ext_resource type="Script" uid="uid://b8jc3wxjgyk8r" path="res://src/Scripts/scene_transition.gd" id="1_3wnqs"]
+[ext_resource type="Shader" uid="uid://6aixxn2rg6ch" path="res://src/circle_transition.gdshader" id="2_rlsfy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbkcp"]
+shader = ExtResource("2_rlsfy")
+shader_parameter/blink_progress = 1.0
+shader_parameter/eye_roundness = 0.742
+shader_parameter/smoothness = 0.1
+shader_parameter/blink_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_i5m2d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/blink_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_qjst5"]
+resource_name = "blink"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/blink_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xaqoa"]
+_data = {
+&"RESET": SubResource("Animation_i5m2d"),
+&"blink": SubResource("Animation_qjst5")
+}
+
+[node name="SceneTransition" type="CanvasLayer"]
+script = ExtResource("1_3wnqs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gbkcp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -167.0
+offset_top = -144.0
+offset_right = 205.0
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xaqoa")
+}
+speed_scale = 2.0

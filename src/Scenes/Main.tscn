@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://p25m6aa76m6"]
+[gd_scene load_steps=58 format=4 uid="uid://p25m6aa76m6"]
 
 [ext_resource type="Script" uid="uid://dob0ng7pmfk64" path="res://src/Scripts/main.gd" id="1_j4yc3"]
 [ext_resource type="PackedScene" uid="uid://csg1tid2hsgm8" path="res://src/Scenes/player.tscn" id="3_eml7d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dk03jwiibs08m" path="res://src/Scripts/cursor.gd" id="5_xyvdf"]
 [ext_resource type="Texture2D" uid="uid://mg8p8sqbe5ui" path="res://src/Assets/Models/Studio/photography_studio_equipment_0.png" id="6_d85jq"]
 [ext_resource type="PackedScene" uid="uid://cy5r385m80cqn" path="res://src/Assets/Models/Studio/boxes_and_checklist.glb" id="7_d85jq"]
+[ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="7_ohpsy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d85jq"]
 albedo_color = Color(0.314316, 0.314316, 0.314316, 1)
@@ -695,6 +696,11 @@ _data = {
 &"camera_flash": SubResource("Animation_eml7d")
 }
 
+[sub_resource type="Environment" id="Environment_d85jq"]
+background_mode = 2
+glow_enabled = true
+glow_blend_mode = 1
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j4yc3")
 
@@ -851,6 +857,7 @@ mesh = SubResource("ArrayMesh_w8lsm")
 skeleton = NodePath("")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Models/SoftBox_03_3"]
+unique_name_in_owner = true
 transform = Transform3D(2.76098, 0, 1.86764, 0, 3.33333, 0, -1.86764, 0, 2.76098, 0.76251, 2.23078, 0.226145)
 
 [node name="Boxes" parent="Models" instance=ExtResource("7_d85jq")]
@@ -872,6 +879,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Cursor" type="Sprite2D" parent="UI/Control"]
 unique_name_in_owner = true
@@ -891,8 +899,35 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_ohpsy")
 
+[node name="Time" type="Label" parent="UI/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -257.0
+offset_top = -115.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+theme_override_fonts/font = ExtResource("7_ohpsy")
+theme_override_font_sizes/font_size = 100
+text = "8 AM"
+uppercase = true
+
+[node name="Timer" type="Timer" parent="UI/Control/Time"]
+wait_time = 15.0
+autostart = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Control"]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_ohpsy")
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d85jq")
+
+[connection signal="timeout" from="UI/Control/Time/Timer" to="." method="_on_timer_timeout"]
