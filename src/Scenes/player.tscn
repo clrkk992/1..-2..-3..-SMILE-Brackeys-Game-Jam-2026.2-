@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://csg1tid2hsgm8"]
+[gd_scene load_steps=39 format=4 uid="uid://csg1tid2hsgm8"]
 
 [ext_resource type="Script" uid="uid://bypt1wm4delsh" path="res://src/Scripts/player.gd" id="1_630vu"]
 [ext_resource type="Texture2D" uid="uid://mg8p8sqbe5ui" path="res://src/Assets/Models/Studio/photography_studio_equipment_0.png" id="2_nuidu"]
@@ -244,10 +244,38 @@ tracks/1/keys = {
 "values": [Vector3(0.0100243, 0.223541, 0.00701699), Vector3(1.33, 0.224, 0.007)]
 }
 
+[sub_resource type="Animation" id="Animation_wquk2"]
+resource_name = "progress_bar_complete"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProgressBar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.33, 0.224, 0.007)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wquk2"]
 _data = {
 &"RESET": SubResource("Animation_lq0qa"),
-&"progress_bar": SubResource("Animation_sm553")
+&"progress_bar": SubResource("Animation_sm553"),
+&"progress_bar_complete": SubResource("Animation_wquk2")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k2co4"]
@@ -580,6 +608,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_sm553")
 
 [node name="LightButton" type="Area3D" parent="Laptop"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 1.86265e-09, 0, 1, 0, -1.86265e-09, 0, 1, 5.28162, 0, 0.0474777)
 script = ExtResource("5_lq0qa")
 
@@ -599,16 +628,18 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_lq0qa")
 
 [node name="ProgressBar" type="MeshInstance3D" parent="Laptop/LightButton/Label3D"]
-transform = Transform3D(0.0100242, -0.000123019, -2.61161e-05, 5.45151e-06, 0.223541, -1.22448e-05, 3.73184e-05, 0.000389629, 0.00701693, 0.00755367, 0.0113945, -0.00513005)
+transform = Transform3D(0.0100242, -0.000123021, -2.61163e-05, 5.45157e-06, 0.223541, -1.22447e-05, 3.73187e-05, 0.000389626, 0.00701693, 0.00755367, 0.0113945, -0.00513005)
 visible = false
 mesh = SubResource("BoxMesh_sm553")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wquk2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Laptop/LightButton/Label3D"]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_wquk2")
 }
+autoplay = "progress_bar_complete"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Laptop/LightButton"]
 transform = Transform3D(0.999973, 0, 2.10479e-07, 0, 0.999973, 0, -2.10479e-07, 0, 0.999973, -5.41616, 14.9707, -7.57383)
@@ -645,7 +676,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 195.0
+offset_left = 270.0
 offset_top = 50.0
 offset_right = -217.0
 offset_bottom = -131.0

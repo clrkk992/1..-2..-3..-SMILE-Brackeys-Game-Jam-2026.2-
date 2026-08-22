@@ -3,6 +3,7 @@ extends Node3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var camera: Camera3D = $Camera
 @onready var camera_effect: ColorRect = %CameraEffect
+@onready var light_button: Area3D = %LightButton
 
 enum STATE {
 	CAMERA,

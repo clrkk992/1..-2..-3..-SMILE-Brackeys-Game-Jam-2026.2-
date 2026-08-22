@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://p25m6aa76m6"]
+[gd_scene load_steps=60 format=4 uid="uid://p25m6aa76m6"]
 
 [ext_resource type="Script" uid="uid://dob0ng7pmfk64" path="res://src/Scripts/main.gd" id="1_j4yc3"]
 [ext_resource type="PackedScene" uid="uid://csg1tid2hsgm8" path="res://src/Scenes/player.tscn" id="3_eml7d"]
@@ -696,8 +696,14 @@ _data = {
 &"camera_flash": SubResource("Animation_eml7d")
 }
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d85jq"]
+
+[sub_resource type="Sky" id="Sky_d85jq"]
+sky_material = SubResource("ProceduralSkyMaterial_d85jq")
+
 [sub_resource type="Environment" id="Environment_d85jq"]
 background_mode = 2
+sky = SubResource("Sky_d85jq")
 glow_enabled = true
 glow_blend_mode = 1
 
@@ -927,7 +933,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_ohpsy")
 }
 
+[node name="LightTimer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d85jq")
 
 [connection signal="timeout" from="UI/Control/Time/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LightTimer" to="." method="_on_light_timer_timeout"]
