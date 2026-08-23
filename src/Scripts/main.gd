@@ -16,8 +16,17 @@ func _ready() -> void:
 	spawn_new_character()
 	
 func _physics_process(_delta: float) -> void:
+	#long press button triggered
 	if player.light_button.triggered == true:
 		light.light_energy = 1.0
+		
+	#sequential button triggered
+	if player.color_button.current_color == player.color_button.COLOR.WHITE:
+		light.light_color = "ffffff"
+	elif player.color_button.current_color == player.color_button.COLOR.RED:
+		light.light_color = "ff0000"
+	elif player.color_button.current_color == player.color_button.COLOR.GREEN:
+		light.light_color = "00ff61"
 	
 func _input(event: InputEvent) -> void:
 	if player.current_state == player.STATE.CAMERA:

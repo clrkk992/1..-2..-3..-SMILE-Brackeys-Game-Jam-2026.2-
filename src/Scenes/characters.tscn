@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://vd7ty0jdgnb2"]
 
 [ext_resource type="Script" uid="uid://dfxehhfigbg0y" path="res://src/Scripts/character.gd" id="1_i18ty"]
-[ext_resource type="Texture2D" uid="uid://55htptxqdgj1" path="res://src/Assets/Characters/ActorA/ActorA_idle_1.png" id="2_p31dn"]
+[ext_resource type="Texture2D" uid="uid://vyam02dvt42h" path="res://src/Assets/Characters/ActorA/ActorA_1.png" id="2_i18ty"]
 
 [sub_resource type="Animation" id="Animation_ugyts"]
 length = 0.001
@@ -140,11 +140,12 @@ script = ExtResource("1_i18ty")
 [node name="Walk_Anchor" type="Node3D" parent="."]
 
 [node name="Sprite3D" type="Sprite3D" parent="Walk_Anchor"]
+unique_name_in_owner = true
 billboard = 1
 shaded = true
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("2_p31dn")
+texture = ExtResource("2_i18ty")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

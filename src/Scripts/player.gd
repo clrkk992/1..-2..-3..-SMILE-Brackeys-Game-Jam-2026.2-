@@ -4,6 +4,7 @@ extends Node3D
 @onready var camera: Camera3D = $Camera
 @onready var camera_effect: ColorRect = %CameraEffect
 @onready var light_button: Area3D = %LightButton
+@onready var color_button: Area3D = %ColorButton
 
 enum STATE {
 	CAMERA,
@@ -43,7 +44,7 @@ func _input(event):
 			
 			current_state = STATE.CHECKLIST
 			
-	if current_state == STATE.CHECKLIST:
+	elif current_state == STATE.CHECKLIST:
 		if event.is_action_pressed("move_left"):
 			animation_player.play_backwards("clipboard")
 			await animation_player.animation_finished
@@ -55,7 +56,7 @@ func _input(event):
 			
 			current_state = STATE.CAMERA
 			
-	if current_state == STATE.LAPTOP:
+	elif current_state == STATE.LAPTOP:
 		if event.is_action_pressed("move_right"):
 			animation_player.play_backwards("laptop")
 			await animation_player.animation_finished
