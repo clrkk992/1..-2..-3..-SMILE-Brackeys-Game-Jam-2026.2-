@@ -3,22 +3,13 @@ extends Node3D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var sprite: Sprite3D = %Sprite3D
 
+@export var texture_array: Array[String] = []
+
 var animation_finished: bool = false
-var texture: String = " "
 
 func _ready() -> void:
-	var randomizer = randi_range(1,4)
-	match randomizer:
-		1:
-			texture = "uid://vyam02dvt42h" #ActorA_1
-		2:
-			texture = "uid://ci4kj1fxqu1qt" #ActorA_2
-		3:
-			texture = "uid://dgf4kj7rvr0ls" #ActorA_3
-		4:
-			texture = "uid://bciep55utw26t" #ActorA_4
-			
-	sprite.texture = load(texture)
+	var randomizer = randi_range(0,18)
+	sprite.texture = load(texture_array[randomizer])
 
 func walk_in() -> void:
 	animation_finished = false

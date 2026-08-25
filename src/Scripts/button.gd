@@ -36,10 +36,13 @@ func _ready() -> void:
 		color_bar.visible = true
 
 func _on_mouse_entered() -> void:
+	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(label, "scale", Vector3(21.0, 21.0, 21.0), 0.15)
 	label.scale = Vector3(21.0, 21.0, 21.0)
 
 func _on_mouse_exited() -> void:
-	label.scale = Vector3(20.0, 20.0, 20.0)
+	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(label, "scale", Vector3(20.0, 20.0, 20.0), 0.15)
 	if !triggered:
 		animation_player.play("RESET")
 
@@ -59,6 +62,7 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 			
 			if event.is_pressed():
 				press_count += 1
+				shake_anim()
 				
 				if press_count == 0:
 					change_color(label, mat, 
@@ -79,6 +83,20 @@ func _stop_holding() -> void:
 		hold_time = 0.0
 		if !triggered:
 			animation_player.play("RESET")
+			
+func shake_anim() -> void:
+	var tween = create_tween()
+	
+	var squash_scale = Vector3(21.75, 21.7, 21.0)
+	var normal_scale = Vector3(21.0, 21.0, 21.0)
+	
+	tween.tween_property(label, "scale", squash_scale, 0.06)\
+		.set_trans(Tween.TRANS_QUAD)\
+		.set_ease(Tween.EASE_OUT)
+		
+	tween.tween_property(label, "scale", normal_scale, 0.35)\
+		.set_trans(Tween.TRANS_ELASTIC)\
+		.set_ease(Tween.EASE_OUT)
 
 func change_color(_label: Label3D, _mat: StandardMaterial3D, text : String, _color: String, color_state: COLOR) -> void:
 	_label.text = text
@@ -93,6 +111,7 @@ func _process(delta: float) -> void:
 			hold_time += delta
 			if hold_time >= required_hold_time:
 				triggered = true
+				shake_anim()
 				animation_player.play("progress_bar_complete")
 				
 		elif !triggered:

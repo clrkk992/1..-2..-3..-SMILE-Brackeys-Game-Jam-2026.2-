@@ -9,6 +9,8 @@ extends Node3D
 @onready var time_label: Label = %Time
 @onready var light: OmniLight3D = %OmniLight3D
 
+var changing_character := false
+
 var time:= 8
 var meridiem := "AM"
 
@@ -29,9 +31,10 @@ func _physics_process(_delta: float) -> void:
 		light.light_color = "00ff61"
 	
 func _input(event: InputEvent) -> void:
-	if player.current_state == player.STATE.CAMERA:
-		if event.is_action_pressed("click"):
+	if player.current_state == player.STATE.CAMERA and player.light_button.triggered :
+		if event.is_action_pressed("click") and !changing_character:
 			if current_character.animation_finished:
+				changing_character = true
 				animation_player.play("camera_flash")
 				
 				await animation_player.animation_finished
@@ -40,6 +43,7 @@ func _input(event: InputEvent) -> void:
 					current_character.walk_out()
 					
 				spawn_new_character()
+				changing_character = false
 
 func spawn_new_character() -> void:
 	var new_character := new_character_instance.instantiate()
@@ -70,6 +74,6 @@ func _on_timer_timeout() -> void:
 func _on_light_timer_timeout() -> void:
 	var num := randi_range(0, 10)
 	
-	if num < 2 and num > 7:
+	if num >= 5:
 		light.light_energy = 0.0
 		player.light_button.triggered = false

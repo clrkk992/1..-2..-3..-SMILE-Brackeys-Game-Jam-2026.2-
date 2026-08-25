@@ -21,7 +21,7 @@ metallic = 1.0
 roughness = 0.0
 emission_enabled = true
 emission = Color(0, 1, 0, 1)
-emission_energy_multiplier = 1.5
+emission_energy_multiplier = 0.5
 
 [sub_resource type="Animation" id="Animation_lq0qa"]
 length = 0.001
@@ -48,6 +48,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.0100243, 0.223541, 0.00701699)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProgressBar:surface_material_override/0:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["LIGHT: OFF"]
 }
 
 [sub_resource type="Animation" id="Animation_sm553"]
@@ -77,6 +101,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.0100243, 0.223541, 0.00701699), Vector3(1.33, 0.224, 0.007)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProgressBar:surface_material_override/0:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
 
 [sub_resource type="Animation" id="Animation_wquk2"]
 resource_name = "progress_bar_complete"
@@ -104,6 +140,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(1.33, 0.224, 0.007)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProgressBar:surface_material_override/0:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["LIGHT: ON"]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wquk2"]
 _data = {
@@ -123,7 +183,7 @@ script = ExtResource("1_uik8s")
 transform = Transform3D(20, 0, 5.96046e-08, 0, 20, 0, -5.96046e-08, 0, 20, -5.48325, 14.7685, -10.5161)
 pixel_size = 0.003
 texture_filter = 2
-text = "color: red"
+text = "LIGHT: OFF"
 font = ExtResource("2_ythj8")
 font_size = 35
 outline_size = 0
@@ -144,7 +204,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ythj8")
 
 [node name="ProgressBar" type="MeshInstance3D" parent="Label3D"]
-transform = Transform3D(0.0100242, -0.000123025, -2.6117e-05, 5.45175e-06, 0.223541, -1.22444e-05, 3.73196e-05, 0.000389617, 0.00701693, 0.00755367, 0.0113945, -0.00513005)
+transform = Transform3D(0.0100242, -0.000123028, -2.61174e-05, 5.45189e-06, 0.223541, -1.22442e-05, 3.73203e-05, 0.00038961, 0.00701693, 0.00755367, 0.0113945, -0.00513005)
 visible = false
 mesh = SubResource("BoxMesh_sm553")
 skeleton = NodePath("")

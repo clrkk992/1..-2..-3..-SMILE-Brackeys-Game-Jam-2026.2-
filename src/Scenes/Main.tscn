@@ -2074,6 +2074,9 @@ transform = Transform3D(2.76098, 0, 1.86764, 0, 3.33333, 0, -1.86764, 0, 2.76098
 [node name="Boxes" parent="Models" instance=ExtResource("7_d85jq")]
 transform = Transform3D(0.200574, 0, 0.149231, 0, 0.25, 0, -0.149231, 0, 0.200574, -10.364, -2.98023e-07, 2.49406)
 
+[node name="Boxes2" parent="Models" instance=ExtResource("7_d85jq")]
+transform = Transform3D(-0.237092, 0, -0.0792928, 0, 0.25, 0, 0.0792928, 0, -0.237092, 1.62777, -2.98023e-07, -6.87084)
+
 [node name="Um_Flash_02_1" type="Node3D" parent="Models"]
 transform = Transform3D(0.853869, 0, -0.520488, 0, 1, 0, 0.520488, 0, 0.853869, -1.72857, 0, -1.78311)
 

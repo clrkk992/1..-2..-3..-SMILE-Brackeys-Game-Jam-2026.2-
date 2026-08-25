@@ -136,6 +136,7 @@ _data = {
 
 [node name="Characters" type="Node3D"]
 script = ExtResource("1_i18ty")
+texture_array = Array[String](["uid://vyam02dvt42h", "uid://ci4kj1fxqu1qt", "uid://dgf4kj7rvr0ls", "uid://bciep55utw26t", "uid://b5jsvkc8yrlft", "uid://871n2woymsbe", "uid://dfv61x7x3e63b", "uid://bg4u0nj5jjdpo", "uid://rgvtmlogtndb", "uid://crurbwd4vkjjd", "uid://doc0ggym6tpus", "uid://kmtkklxkorko", "uid://qlshvybhrdpa", "uid://bl8moebfqo0ps", "uid://dkgg61siqo7b0", "uid://rvam87g5l88k", "uid://c1f6y4ijv7xtj", "uid://bcyrr1fil6ucq", "uid://cllp5lg6gd255"])
 
 [node name="Walk_Anchor" type="Node3D" parent="."]
 
