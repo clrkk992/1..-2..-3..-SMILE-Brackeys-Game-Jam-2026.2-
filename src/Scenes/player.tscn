@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=4 uid="uid://csg1tid2hsgm8"]
+[gd_scene load_steps=32 format=4 uid="uid://csg1tid2hsgm8"]
 
 [ext_resource type="Script" uid="uid://bypt1wm4delsh" path="res://src/Scripts/player.gd" id="1_630vu"]
 [ext_resource type="Texture2D" uid="uid://mg8p8sqbe5ui" path="res://src/Assets/Models/Studio/photography_studio_equipment_0.png" id="2_nuidu"]
 [ext_resource type="PackedScene" uid="uid://cs125b0te6j3d" path="res://src/Assets/Models/laptop.glb" id="3_waosb"]
+[ext_resource type="PackedScene" uid="uid://ct6mry30ilokd" path="res://src/Scenes/clipboard_character.tscn" id="3_wquk2"]
 [ext_resource type="PackedScene" uid="uid://lu7yty1fn4of" path="res://src/Scenes/button.tscn" id="5_k2co4"]
 [ext_resource type="Shader" uid="uid://bn0554uot455c" path="res://src/vignette_effect.gdshader" id="5_sm553"]
 [ext_resource type="PackedScene" uid="uid://m26oole26jib" path="res://src/Assets/Models/Studio/desk.glb" id="5_vhadf"]
@@ -185,7 +186,7 @@ shader_parameter/scanline_opacity = 0.06
 shader_parameter/rgb_split = 0.0
 shader_parameter/distortion_amount = 0.03
 shader_parameter/ui_color = Color(1, 1, 1, 0.392157)
-shader_parameter/show_crosshair = true
+shader_parameter/show_crosshair = false
 shader_parameter/crosshair_size = 0.03
 shader_parameter/line_thickness = 0.002
 shader_parameter/show_borders = true
@@ -491,8 +492,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 7.10543e-15, 0, -7.10543e-15, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_llcq8")
 skeleton = NodePath("")
 
+[node name="Character" parent="ClipBoard" instance=ExtResource("3_wquk2")]
+transform = Transform3D(0.8, 1.69392e-20, 2.27374e-13, 0, 0.8, -5.95995e-08, -2.27374e-13, 5.95995e-08, 0.8, -0.5182, 0.821964, 0.038417)
+
+[node name="Character2" parent="ClipBoard" instance=ExtResource("3_wquk2")]
+transform = Transform3D(0.8, 1.69392e-20, 2.27374e-13, 0, 0.8, -5.95995e-08, -2.27374e-13, 5.95995e-08, 0.8, -0.518, 0.287, 0.039)
+
+[node name="Character3" parent="ClipBoard" instance=ExtResource("3_wquk2")]
+transform = Transform3D(0.8, 1.69392e-20, 2.27374e-13, 0, 0.8, -5.95995e-08, -2.27374e-13, 5.95995e-08, 0.8, -0.518, -0.232, 0.043)
+
+[node name="Character4" parent="ClipBoard" instance=ExtResource("3_wquk2")]
+transform = Transform3D(0.8, 1.69392e-20, 2.27374e-13, 0, 0.8, -5.95995e-08, -2.27374e-13, 5.95995e-08, 0.8, -0.518, -0.773, 0.042)
+
+[node name="Character5" parent="ClipBoard" instance=ExtResource("3_wquk2")]
+transform = Transform3D(0.8, 6.82121e-13, 2.27374e-13, 0, 0.8, -5.96097e-08, -2.27374e-13, 5.95995e-08, 0.8, 0.238952, 0.821965, 0.0384158)
+
+[node name="Character6" parent="ClipBoard" instance=ExtResource("3_wquk2")]
+transform = Transform3D(0.8, 6.82121e-13, 2.27374e-13, 0, 0.8, -5.96097e-08, -2.27374e-13, 5.95995e-08, 0.8, 0.238952, 0.287001, 0.0389987)
+
+[node name="Character7" parent="ClipBoard" instance=ExtResource("3_wquk2")]
+transform = Transform3D(0.8, 6.82121e-13, 2.27374e-13, 0, 0.8, -5.96097e-08, -2.27374e-13, 5.95995e-08, 0.8, 0.238952, -0.231999, 0.0429988)
+
+[node name="Character8" parent="ClipBoard" instance=ExtResource("3_wquk2")]
+transform = Transform3D(0.8, 6.82121e-13, 2.27374e-13, 0, 0.8, -5.96097e-08, -2.27374e-13, 5.95995e-08, 0.8, 0.238952, -0.772999, 0.0419987)
+
 [node name="Laptop" parent="." instance=ExtResource("3_waosb")]
-transform = Transform3D(-7.19064e-05, 0, 0.00799968, 0, 0.008, 0, -0.00799968, 0, -7.19064e-05, -0.365428, -0.118148, -0.00290751)
+transform = Transform3D(-7.19065e-05, 0, 0.00799968, 0, 0.008, 0, -0.00799968, 0, -7.19065e-05, -0.365428, -0.118148, -0.00290751)
 
 [node name="Desk" parent="Laptop" instance=ExtResource("5_vhadf")]
 transform = Transform3D(124.995, 0, -1.12353, 0, 125, 0, 1.12353, 0, 124.995, -1.25929, -21.9893, -0.49435)

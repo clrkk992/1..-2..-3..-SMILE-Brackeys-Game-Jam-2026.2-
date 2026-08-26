@@ -20,7 +20,7 @@ enum COLOR {
 
 #long press
 var hold_time: float = 0.0
-var required_hold_time: float = 3.0
+var required_hold_time: float = 2.3
 var is_holding: bool = false
 var triggered: bool = true
 

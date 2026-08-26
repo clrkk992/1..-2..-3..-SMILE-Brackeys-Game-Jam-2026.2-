@@ -76,7 +76,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_sm553"]
 resource_name = "progress_bar"
-length = 3.0
+length = 2.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -96,10 +96,10 @@ tracks/1/path = NodePath("ProgressBar:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 2.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.0100243, 0.223541, 0.00701699), Vector3(1.33, 0.224, 0.007)]
+"values": [Vector3(0, 0.224, 0.007), Vector3(1.33, 0.224, 0.007)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -204,7 +204,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ythj8")
 
 [node name="ProgressBar" type="MeshInstance3D" parent="Label3D"]
-transform = Transform3D(0.0100242, -0.000123028, -2.61174e-05, 5.45189e-06, 0.223541, -1.22442e-05, 3.73203e-05, 0.00038961, 0.00701693, 0.00755367, 0.0113945, -0.00513005)
+transform = Transform3D(0.0100242, -0.000123031, -2.6118e-05, 5.45205e-06, 0.223541, -1.2244e-05, 3.73211e-05, 0.000389602, 0.00701693, 0.00755367, 0.0113945, -0.00513005)
 visible = false
 mesh = SubResource("BoxMesh_sm553")
 skeleton = NodePath("")

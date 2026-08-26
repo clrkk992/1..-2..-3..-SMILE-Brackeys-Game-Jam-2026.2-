@@ -16,6 +16,7 @@ var meridiem := "AM"
 
 func _ready() -> void:
 	spawn_new_character()
+	EventBus.character_finished.connect(_on_spawn_new_char)
 	
 func _physics_process(_delta: float) -> void:
 	#long press button triggered
@@ -31,20 +32,28 @@ func _physics_process(_delta: float) -> void:
 		light.light_color = "00ff61"
 	
 func _input(event: InputEvent) -> void:
-	if player.current_state == player.STATE.CAMERA and player.light_button.triggered :
+	if player.current_state == player.STATE.CAMERA and player.light_button.triggered:
 		if event.is_action_pressed("click") and !changing_character:
 			if current_character.animation_finished:
-				changing_character = true
 				animation_player.play("camera_flash")
-				
 				await animation_player.animation_finished
 				
-				if is_instance_valid(current_character):
-					current_character.walk_out()
-					
-				spawn_new_character()
-				changing_character = false
-
+				_on_spawn_new_char()
+				
+#checks to make sure its safe to spawn a new char
+func _on_spawn_new_char() -> void:
+	if changing_character:
+		return
+		
+	changing_character = true
+	
+	if is_instance_valid(current_character):
+		current_character.walk_out()
+		
+	spawn_new_character()
+	
+	changing_character = false
+	
 func spawn_new_character() -> void:
 	var new_character := new_character_instance.instantiate()
 	add_child(new_character)

@@ -1926,7 +1926,7 @@ light_color = Color(1, 1, 0.698039, 1)
 shadow_enabled = true
 
 [node name="CharactersSpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20923, 0.25, -0.234488)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25761, 0.25, -0.234488)
 
 [node name="Models" type="Node3D" parent="."]
 transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0.02431, -0.0574872, 0.0482347)
