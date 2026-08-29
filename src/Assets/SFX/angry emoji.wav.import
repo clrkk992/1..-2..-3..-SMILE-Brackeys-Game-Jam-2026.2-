@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2i1axb2nwm8i"
+path="res://.godot/imported/angry emoji.wav-252491935c81530a825605d0c3708e1b.sample"
+
+[deps]
+
+source_file="res://src/Assets/SFX/angry emoji.wav"
+dest_files=["res://.godot/imported/angry emoji.wav-252491935c81530a825605d0c3708e1b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -3,6 +3,8 @@ extends Area3D
 @onready var label: Label3D = $Label3D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var color_bar: MeshInstance3D = %ColorBar
+@onready var select_sfx: AudioStreamPlayer3D = $SelectSFX
+@onready var rising_sfx: AudioStreamPlayer3D = $RisingSFX
 
 enum STATE {
 	CLICK,
@@ -11,8 +13,10 @@ enum STATE {
 
 enum COLOR {
 	WHITE,
+	PURPLE,
+	BLUE,
 	RED,
-	GREEN
+	ORANGE
 }
 
 @export var label_text: String
@@ -27,6 +31,7 @@ var triggered: bool = true
 #sequential click
 var press_count := 0
 var current_color := COLOR.WHITE
+var color := "ffffff"
 
 func _ready() -> void:
 	label.text = label_text
@@ -38,7 +43,9 @@ func _ready() -> void:
 func _on_mouse_entered() -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(label, "scale", Vector3(21.0, 21.0, 21.0), 0.15)
-	label.scale = Vector3(21.0, 21.0, 21.0)
+	select_sfx.pitch_scale = 2.0
+	select_sfx.volume_db = -40.0
+	select_sfx.play()
 
 func _on_mouse_exited() -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -54,8 +61,10 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 				hold_time = 0.0
 				triggered = false
 				animation_player.play("progress_bar")
+				rising_sfx.play()
 			elif event.is_released():
 				_stop_holding()
+				rising_sfx.stop()
 				
 		elif current_state == STATE.CLICK:
 			var mat: StandardMaterial3D = color_bar.get_active_material(0).duplicate()
@@ -63,16 +72,25 @@ func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3,
 			if event.is_pressed():
 				press_count += 1
 				shake_anim()
+				select_sfx.pitch_scale = 5.0
+				select_sfx.volume_db = -20.0
+				select_sfx.play()
 				
 				if press_count == 0:
 					change_color(label, mat, 
 					"color: white           ", "ffffff", COLOR.WHITE)
 				elif press_count == 1:
 					change_color(label, mat, 
-					"color: red                ", "ff0000", COLOR.RED)
+					"color: purple         ", "c3578a", COLOR.PURPLE)
 				elif press_count == 2:
 					change_color(label, mat, 
-					"color: green           ", "00ff61", COLOR.GREEN)
+					"color: blue              ", "60ffff", COLOR.BLUE)
+				elif press_count == 3:
+					change_color(label, mat, 
+					"color: red                ", "e55050", COLOR.RED)
+				elif press_count == 4:
+					change_color(label, mat, 
+					"color: orange         ", "ff7c00", COLOR.ORANGE)
 					press_count = -1
 				
 				color_bar.set_surface_override_material(0, mat)
@@ -102,6 +120,7 @@ func change_color(_label: Label3D, _mat: StandardMaterial3D, text : String, _col
 	_label.text = text
 	_mat.albedo_color = _color
 	_mat.emission = _color
+	color = _color
 	
 	current_color = color_state
 
@@ -112,7 +131,11 @@ func _process(delta: float) -> void:
 			if hold_time >= required_hold_time:
 				triggered = true
 				shake_anim()
+				rising_sfx.stop()
 				animation_player.play("progress_bar_complete")
+				select_sfx.pitch_scale = 5.0
+				select_sfx.volume_db = 0.0
+				select_sfx.play()
 				
 		elif !triggered:
 			animation_player.play("RESET")

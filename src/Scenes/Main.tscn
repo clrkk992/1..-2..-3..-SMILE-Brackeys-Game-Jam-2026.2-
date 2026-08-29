@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=4 uid="uid://p25m6aa76m6"]
+[gd_scene load_steps=142 format=4 uid="uid://p25m6aa76m6"]
 
 [ext_resource type="Script" uid="uid://dob0ng7pmfk64" path="res://src/Scripts/main.gd" id="1_j4yc3"]
 [ext_resource type="PackedScene" uid="uid://csg1tid2hsgm8" path="res://src/Scenes/player.tscn" id="3_eml7d"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://mg8p8sqbe5ui" path="res://src/Assets/Models/Studio/photography_studio_equipment_0.png" id="6_d85jq"]
 [ext_resource type="PackedScene" uid="uid://cy5r385m80cqn" path="res://src/Assets/Models/Studio/boxes_and_checklist.glb" id="7_d85jq"]
 [ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="7_ohpsy"]
+[ext_resource type="AudioStream" uid="uid://2r8el8ycukqw" path="res://src/Assets/SFX/camera shutter.mp3" id="8_ohpsy"]
+[ext_resource type="AudioStream" uid="uid://h0ef50abv3ef" path="res://src/Assets/SFX/light off.mp3" id="9_p301h"]
+
+[sub_resource type="Gradient" id="Gradient_d85jq"]
+colors = PackedColorArray(1, 1, 0.698039, 1, 1, 0.396078, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d85jq"]
 albedo_color = Color(0.314316, 0.314316, 0.314316, 1)
@@ -27,6 +32,67 @@ metallic = 0.2
 roughness = 0.0
 refraction_enabled = true
 refraction_scale = 0.01
+
+[sub_resource type="Animation" id="Animation_p301h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sun:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0.698039, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.105344, -1.83021, 0.214479)]
+}
+
+[sub_resource type="Animation" id="Animation_ohpsy"]
+resource_name = "sun"
+length = 540.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sun:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 539.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 0.698039, 1), Color(1, 0.396078, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 539.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.105344, -1.83021, 0.214479), Vector3(-0.10472, -4.48899, 0.214676)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p301h"]
+_data = {
+&"RESET": SubResource("Animation_p301h"),
+&"sun": SubResource("Animation_ohpsy")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibvry"]
 resource_name = "Default"
@@ -1836,6 +1902,7 @@ glow_blend_mode = 1
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j4yc3")
+sun_gradient = SubResource("Gradient_d85jq")
 
 [node name="Room" type="Node3D" parent="."]
 
@@ -1853,12 +1920,12 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0140512, 0, 0)
 
 [node name="LWall" type="MeshInstance3D" parent="Room/LeftWall"]
-transform = Transform3D(5.90778e-08, -0.00948396, 0, 1.35154, 4.14557e-10, 0, 0, 0, -1.3562, -2.48754, 0.611228, 3.25597)
+transform = Transform3D(5.90778e-08, -0.00948396, 0, 1.35154, 4.14557e-10, 0, 0, 0, -1.48008, -2.48754, 0.611228, 3.25597)
 mesh = SubResource("BoxMesh_u2m37")
 skeleton = NodePath("../..")
 
 [node name="LWall2" type="MeshInstance3D" parent="Room/LeftWall"]
-transform = Transform3D(5.90778e-08, -0.00948396, 0, 1.35154, 4.14557e-10, 0, 0, 0, -1.3562, -2.48754, 0.611228, 0.0635679)
+transform = Transform3D(5.90778e-08, -0.00948396, 0, 1.35154, 4.14557e-10, 0, 0, 0, -1.48402, -2.48754, 0.611228, 0.0635679)
 mesh = SubResource("BoxMesh_u2m37")
 skeleton = NodePath("../..")
 
@@ -1868,7 +1935,7 @@ mesh = SubResource("BoxMesh_u2m37")
 skeleton = NodePath("../..")
 
 [node name="LWall4" type="MeshInstance3D" parent="Room/LeftWall"]
-transform = Transform3D(1.65394e-08, -0.00948396, 0, 0.378377, 4.14557e-10, 0, 0, 0, -2.08355, -2.48738, 1.09827, 1.67017)
+transform = Transform3D(1.57356e-08, -0.00948396, 0, 0.359989, 4.14557e-10, 0, 0, 0, -2.08355, -2.48738, 1.09827, 1.67017)
 mesh = SubResource("BoxMesh_u2m37")
 skeleton = NodePath("../..")
 
@@ -1887,7 +1954,7 @@ mesh = SubResource("BoxMesh_u2m37")
 skeleton = NodePath("../..")
 
 [node name="LWall2" type="MeshInstance3D" parent="Room/RightWall"]
-transform = Transform3D(5.90778e-08, -0.00948396, 0, 1.35154, 4.14557e-10, 0, 0, 0, -1.3562, -2.48754, 0.611228, 0.0635679)
+transform = Transform3D(5.90778e-08, -0.00948396, 0, 1.35154, 4.14557e-10, 0, 0, 0, -1.47425, -2.48754, 0.611228, 0.0263379)
 mesh = SubResource("BoxMesh_u2m37")
 skeleton = NodePath("../..")
 
@@ -1920,10 +1987,17 @@ skeleton = NodePath("../..")
 [node name="Player" parent="." instance=ExtResource("3_eml7d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.078246, 0.246696, 2.68337)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.229007, 0.153899, -0.961182, 0.211659, 0.971671, 0.10515, 0.950135, -0.179363, -0.255094, -0.143742, 2.48833, 1.6179)
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.229005, 0.153898, -0.961182, 0.211658, 0.971671, 0.105149, 0.950135, -0.179363, -0.255092, -0.143742, 2.48833, 1.6179)
 light_color = Color(1, 1, 0.698039, 1)
 shadow_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sun"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_p301h")
+}
+autoplay = "sun"
 
 [node name="CharactersSpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25761, 0.25, -0.234488)
@@ -2369,7 +2443,7 @@ text = "8 AM"
 uppercase = true
 
 [node name="Timer" type="Timer" parent="UI/Control/Time"]
-wait_time = 15.0
+wait_time = 60.0
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Control"]
@@ -2384,6 +2458,18 @@ autostart = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d85jq")
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="CameraShutterSFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("8_ohpsy")
+
+[node name="LightOffSFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("9_p301h")
+volume_db = 40.0
+pitch_scale = 0.5
 
 [connection signal="timeout" from="UI/Control/Time/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="LightTimer" to="." method="_on_light_timer_timeout"]

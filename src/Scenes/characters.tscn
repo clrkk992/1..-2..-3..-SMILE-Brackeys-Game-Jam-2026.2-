@@ -1,8 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://vd7ty0jdgnb2"]
+[gd_scene load_steps=20 format=3 uid="uid://vd7ty0jdgnb2"]
 
 [ext_resource type="Script" uid="uid://dfxehhfigbg0y" path="res://src/Scripts/character.gd" id="1_i18ty"]
 [ext_resource type="Texture2D" uid="uid://vyam02dvt42h" path="res://src/Assets/Characters/ActorA/ActorA_1.png" id="2_i18ty"]
 [ext_resource type="Texture2D" uid="uid://dmho28ajraaid" path="res://src/Assets/Characters/Emojis/emojis.png" id="3_p31dn"]
+[ext_resource type="AudioStream" uid="uid://bntujehqdwebt" path="res://src/Assets/SFX/emoji.wav" id="4_yj2pg"]
+[ext_resource type="AudioStream" uid="uid://d2i1axb2nwm8i" path="res://src/Assets/SFX/angry emoji.wav" id="5_w8t1r"]
+[ext_resource type="AudioStream" uid="uid://v6g7k0twtijw" path="res://src/Assets/SFX/walk.mp3" id="6_fjxwt"]
+[ext_resource type="AudioStream" uid="uid://cxecb03y3p6rt" path="res://src/Assets/SFX/timer.mp3" id="7_c08hq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_i18ty"]
 
@@ -234,7 +238,7 @@ tracks/3/path = NodePath("ProgressBar:surface_material_override/0:albedo_color")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 6.00205, 9.00307),
+"times": PackedFloat32Array(0, 6.00205, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Color(0.764706, 1, 0.541176, 1), Color(0.92549, 0.933333, 0.427451, 1), Color(0.898039, 0.313726, 0.313726, 1)]
@@ -246,7 +250,7 @@ tracks/4/path = NodePath("../Sprite3D/Emotion:region_rect")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 5.96667, 9.03333),
+"times": PackedFloat32Array(0, 6.03333, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Rect2(20, 0, 11.084, 10), Rect2(31.9, 0, 11.084, 10), Rect2(44, 0, 11.084, 10)]
@@ -404,7 +408,6 @@ _data = {
 
 [node name="Characters" type="Node3D"]
 script = ExtResource("1_i18ty")
-texture_array = Array[String](["uid://vyam02dvt42h", "uid://ci4kj1fxqu1qt", "uid://dgf4kj7rvr0ls", "uid://bciep55utw26t", "uid://b5jsvkc8yrlft", "uid://871n2woymsbe", "uid://dfv61x7x3e63b", "uid://bg4u0nj5jjdpo", "uid://rgvtmlogtndb", "uid://crurbwd4vkjjd", "uid://doc0ggym6tpus", "uid://kmtkklxkorko", "uid://qlshvybhrdpa", "uid://bl8moebfqo0ps", "uid://dkgg61siqo7b0", "uid://rvam87g5l88k", "uid://c1f6y4ijv7xtj", "uid://bcyrr1fil6ucq", "uid://cllp5lg6gd255"])
 
 [node name="Walk_Anchor" type="Node3D" parent="."]
 
@@ -456,3 +459,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_tyni8")
 }
 autoplay = "idle"
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="EmojiSFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("4_yj2pg")
+pitch_scale = 2.0
+
+[node name="AngrySFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("5_w8t1r")
+volume_db = 20.0
+
+[node name="WalkSFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("6_fjxwt")
+
+[node name="TimerSFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("7_c08hq")

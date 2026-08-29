@@ -8,10 +8,14 @@ extends Node3D
 @onready var cursor: Sprite2D = %Cursor
 @onready var time_label: Label = %Time
 @onready var light: OmniLight3D = %OmniLight3D
+@onready var sun: DirectionalLight3D = $Sun
+@onready var camera_shutter_sfx: AudioStreamPlayer3D = %CameraShutterSFX
+@onready var light_off_sfx: AudioStreamPlayer3D = %LightOffSFX
+
+@export var sun_gradient: Gradient
 
 var changing_character := false
-
-var time:= 8
+var time:= EventBus.time
 var meridiem := "AM"
 
 func _ready() -> void:
@@ -24,12 +28,7 @@ func _physics_process(_delta: float) -> void:
 		light.light_energy = 1.0
 		
 	#sequential button triggered
-	if player.color_button.current_color == player.color_button.COLOR.WHITE:
-		light.light_color = "ffffff"
-	elif player.color_button.current_color == player.color_button.COLOR.RED:
-		light.light_color = "ff0000"
-	elif player.color_button.current_color == player.color_button.COLOR.GREEN:
-		light.light_color = "00ff61"
+	light.light_color = player.color_button.color
 	
 func _input(event: InputEvent) -> void:
 	if player.current_state == player.STATE.CAMERA and player.light_button.triggered:
@@ -37,9 +36,19 @@ func _input(event: InputEvent) -> void:
 			if current_character.animation_finished:
 				animation_player.play("camera_flash")
 				await animation_player.animation_finished
+				camera_shutter_sfx.play()
 				
+				check_character_color()
+					
 				_on_spawn_new_char()
 				
+func check_character_color() -> void:
+	var player_color = player.color_button.color
+	var character_color = current_character.required_color
+	
+	if player_color != character_color:
+		EventBus.change_emote_angry.emit()
+
 #checks to make sure its safe to spawn a new char
 func _on_spawn_new_char() -> void:
 	if changing_character:
@@ -60,6 +69,12 @@ func spawn_new_character() -> void:
 	
 	new_character.global_position = characters_spawn_point.global_position
 	current_character = new_character
+	
+	for character in EventBus.character_list.values():
+		if character["sprites"] == new_character.randomizer:
+			new_character.required_color = character["colors"]
+			break
+
 	new_character.walk_in()
 
 #Day Timer
@@ -86,3 +101,4 @@ func _on_light_timer_timeout() -> void:
 	if num >= 5:
 		light.light_energy = 0.0
 		player.light_button.triggered = false
+		light_off_sfx.play()

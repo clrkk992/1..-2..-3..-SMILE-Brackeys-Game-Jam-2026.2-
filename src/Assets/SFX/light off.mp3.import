@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://h0ef50abv3ef"
+path="res://.godot/imported/light off.mp3-6113b1a7d77e6303c380d889026fe82d.mp3str"
+
+[deps]
+
+source_file="res://src/Assets/SFX/light off.mp3"
+dest_files=["res://.godot/imported/light off.mp3-6113b1a7d77e6303c380d889026fe82d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
