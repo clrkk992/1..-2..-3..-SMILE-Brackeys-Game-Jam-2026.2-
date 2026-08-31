@@ -131,11 +131,11 @@ func _process(delta: float) -> void:
 		if is_holding and !EventBus.lights_triggered:
 			hold_time += delta
 			if hold_time >= required_hold_time:
+				success.play()
 				rising_sfx.stop()
-				EventBus.lights_triggered = true
 				shake_anim()
 				animation_player.play("progress_bar_complete")
-				success.play()
+				EventBus.lights_triggered = true
 				
 		elif !EventBus.lights_triggered:
 			animation_player.play("RESET")

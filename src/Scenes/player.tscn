@@ -1,23 +1,22 @@
-[gd_scene load_steps=59 format=4 uid="uid://csg1tid2hsgm8"]
+[gd_scene load_steps=56 format=4 uid="uid://csg1tid2hsgm8"]
 
 [ext_resource type="Script" uid="uid://bypt1wm4delsh" path="res://src/Scripts/player.gd" id="1_630vu"]
 [ext_resource type="Texture2D" uid="uid://mg8p8sqbe5ui" path="res://src/Assets/Models/Studio/photography_studio_equipment_0.png" id="2_nuidu"]
 [ext_resource type="PackedScene" uid="uid://ct6mry30ilokd" path="res://src/Scenes/clipboard_character.tscn" id="3_wquk2"]
 [ext_resource type="Texture2D" uid="uid://w17i6vq66nau" path="res://src/Assets/Models/laptop_0.png" id="5_cqylb"]
 [ext_resource type="PackedScene" uid="uid://lu7yty1fn4of" path="res://src/Scenes/button.tscn" id="5_k2co4"]
-[ext_resource type="Shader" uid="uid://bn0554uot455c" path="res://src/vignette_effect.gdshader" id="5_sm553"]
+[ext_resource type="Shader" uid="uid://bn0554uot455c" path="res://src/Shaders/vignette_effect.gdshader" id="5_sm553"]
 [ext_resource type="PackedScene" uid="uid://m26oole26jib" path="res://src/Assets/Models/Studio/desk.glb" id="5_vhadf"]
 [ext_resource type="Texture2D" uid="uid://cu7hvyv38dj33" path="res://src/Assets/Models/laptop_1.png" id="6_26mal"]
 [ext_resource type="Texture2D" uid="uid://cde8qbav5j40e" path="res://src/Assets/Models/laptop_2.png" id="7_wanlr"]
 [ext_resource type="Texture2D" uid="uid://cvqo4pcl4xijh" path="res://src/Assets/Models/laptop_4.png" id="8_ko0n8"]
 [ext_resource type="Texture2D" uid="uid://bbq2h3vsfau3j" path="res://src/Assets/Models/laptop_3.png" id="9_rwblb"]
 [ext_resource type="PackedScene" uid="uid://pcq8ocms05y4" path="res://src/Assets/Models/Studio/clock.glb" id="11_ko0n8"]
-[ext_resource type="Shader" uid="uid://slo5258mmlf7" path="res://src/screen_effect.gdshader" id="11_rwblb"]
 [ext_resource type="AudioStream" uid="uid://ct7d8tgqktidp" path="res://src/Assets/SFX/whoosh.mp3" id="12_26mal"]
 [ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="12_rwblb"]
 [ext_resource type="PackedScene" uid="uid://b1x5oe7ufpf2s" path="res://src/Assets/Models/picture_frame.glb" id="14_ssl7k"]
 [ext_resource type="Texture2D" uid="uid://dbhh7agrqxm78" path="res://src/Assets/Characters/ActorB/Wife.png" id="15_vq6dv"]
-[ext_resource type="Shader" uid="uid://bluxp1xbmx774" path="res://src/health_overlay.gdshader" id="15_yvnj0"]
+[ext_resource type="Shader" uid="uid://bluxp1xbmx774" path="res://src/Shaders/health_overlay.gdshader" id="15_yvnj0"]
 [ext_resource type="AudioStream" uid="uid://dqy13g2p4rxke" path="res://src/Assets/SFX/paper.mp3" id="17_ssvke"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycbtq"]
@@ -281,24 +280,6 @@ emission_enabled = true
 emission = Color(0, 0, 1, 1)
 emission_energy_multiplier = 1.2
 
-[sub_resource type="QuadMesh" id="QuadMesh_yvnj0"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvke"]
-render_priority = 0
-shader = ExtResource("11_rwblb")
-shader_parameter/vignette_intensity = 0.0
-shader_parameter/scanline_count = 1000.0
-shader_parameter/scanline_opacity = 0.06
-shader_parameter/rgb_split = 0.002
-shader_parameter/distortion_amount = 0.01
-shader_parameter/ui_color = Color(1, 1, 1, 0)
-shader_parameter/show_crosshair = false
-shader_parameter/crosshair_size = 0.05
-shader_parameter/line_thickness = 0.002
-shader_parameter/show_borders = false
-shader_parameter/border_margin = 0.05
-shader_parameter/border_length = 0.08
-
 [sub_resource type="BoxMesh" id="BoxMesh_yvnj0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ssvke"]
@@ -355,7 +336,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ssvke"]
 resource_name = "hurt"
-length = 0.8
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -375,7 +356,7 @@ tracks/1/path = NodePath("%HealthOverlay:material:shader_parameter/damage_intens
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.400017, 0.8),
+"times": PackedFloat32Array(0, 0.2, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.7, 0.0]
@@ -787,13 +768,6 @@ current_state = 1
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 6.51926e-09, 0, 1, 0, -6.51926e-09, 0, 1, 9.83567, -7.6426, 0.0884132)
 label_text = "color: white           "
-
-[node name="CameraEffect" type="MeshInstance3D" parent="Laptop"]
-transform = Transform3D(29.4877, -0.00948831, -0.00055081, 0.0160361, 17.2408, -0.000258271, 0.109776, 0.0300509, 0.148001, 4.50218, 10.7725, -10.4683)
-visible = false
-mesh = SubResource("QuadMesh_yvnj0")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_ssvke")
 
 [node name="Clock" parent="Laptop" instance=ExtResource("11_ko0n8")]
 transform = Transform3D(3.04855, 0, 2.18376, 0, 3.75, 0, -2.18376, 0, 3.04855, -16.1249, -0.325139, 7.47777)

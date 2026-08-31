@@ -15,7 +15,7 @@ Boss: Good, [wait=0.5]that's what I wanna hear
 Boss: Now remember,
 Boss: You must always satisfy all customers
 Boss: Let many customers leave unsatisfied,
-Boss: and [shake rate=50.0 level=10]I WILL FIRE YOU!![/shake]
+Boss: and [shake rate=50.0 level=30]I WILL FIRE YOU!![/shake]
 You: [wait=0.5][speed=0.5]W-what's g-going on?
 do EventBus.tutorial_started.emit()
 do! MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
@@ -27,7 +27,6 @@ do EventBus.character_finished.emit()
 ~ dialogue_2
 
 do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
-do! EventBus.spawn_chars_enabled = false
 do EventBus.tutorial_started.emit()
 ???: [[Hello|Hey there]]
 You: W-what's this place?
@@ -63,14 +62,12 @@ You: It won't happen again
 Boss: [shake rate=50.0 level=10]GET BACK TO WORK![/shake]
 do EventBus.tutorial_started.emit()
 do MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
-do EventBus.spawn_chars_enabled = true
 do EventBus.character_finished.emit()
 
 => END
 
 ~ dialogue_4
 
-do EventBus.spawn_chars_enabled = false
 do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
 do EventBus.tutorial_started.emit()
 You: Wait, what?
@@ -119,14 +116,12 @@ Boss: WORK!!
 You: Y-Yes, sir
 do EventBus.tutorial_started.emit()
 do! MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
-do EventBus.spawn_chars_enabled = true
 do EventBus.character_finished.emit()
 
 => END
 
 ~ dialogue_6
 
-do EventBus.spawn_chars_enabled = false
 do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
 do EventBus.tutorial_started.emit()
 You: I think it's better to just accept my fate
@@ -162,9 +157,9 @@ do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
 Notification: (New update in checklist. Please check it out.)
 You: I can't give up right now.
 You: I can do this.
+set EventBus.remove_no_one = true
 do EventBus.tutorial_started.emit()
 do! MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
-do EventBus.spawn_chars_enabled = true
 do EventBus.character_finished.emit()
 
 => END
@@ -172,8 +167,6 @@ do EventBus.character_finished.emit()
 ~ dialogue_8
 
 do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
-do EventBus.spawn_chars_enabled = false
-set EventBus.remove_no_one = true
 do EventBus.tutorial_started.emit()
 You: What?
 You: Where is-
@@ -193,14 +186,12 @@ Boss: I'll be more worried for myself if I were you
 Boss ‘Cause I’ll make sure that you won’t escape this [shake rate=50.0 level=10]NIGHTMARE![/shake]
 do EventBus.tutorial_started.emit()
 do MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
-do EventBus.spawn_chars_enabled = true
 do EventBus.character_finished.emit()
 
 => END
 
 ~ dialogue_10
 
-do EventBus.spawn_chars_enabled = false
 do MusicManager.play_music("uid://cst1ip7prm7ch", -5.0) #sad_music
 set EventBus.remove_no_one = false
 do EventBus.tutorial_started.emit()

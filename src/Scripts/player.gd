@@ -52,6 +52,7 @@ func _ready() -> void:
 				EventBus.char_list_index += 1
 	
 func _tutorial_started() -> void:
+	Mouse.cursor.visible = false
 	animation_player.play("camera")
 	camera_effect.visible = true
 	await get_tree().create_timer(0.5).timeout
@@ -60,6 +61,7 @@ func _tutorial_started() -> void:
 func _input(event):
 	if !turning:
 		if current_state == STATE.CAMERA:
+			Mouse.cursor.visible = false
 			if event.is_action_pressed("move_left"):
 				turning = true
 				animation_player.play_backwards("camera")
@@ -150,12 +152,12 @@ func tween_rotation() -> void:
 	tween.tween_property(camera, "rotation_degrees:y", target_rotation, 0.3)
 	
 func _take_health() -> void:
-	EventBus.health += 1
 	health_animation_player.play("hurt")
+	EventBus.health += 1
 	health_text.text = str(EventBus.health) + " / 10"
 	
 	if current_state == STATE.CAMERA:
-		await health_animation_player.finished
+		await health_animation_player.animation_finished
 		camera_effect.visible = true
 		
 	#health_overlay_val += 0.1

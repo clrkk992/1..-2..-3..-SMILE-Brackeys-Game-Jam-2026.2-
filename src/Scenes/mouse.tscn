@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ogour33jhkbo"]
+
+[ext_resource type="Texture2D" uid="uid://dw3ujc1bydlo" path="res://src/Assets/Cursor.png" id="1_lavcq"]
+[ext_resource type="Script" uid="uid://dk03jwiibs08m" path="res://src/Scripts/cursor.gd" id="2_qh708"]
+
+[node name="Mouse" type="CanvasLayer"]
+layer = 128
+script = ExtResource("2_qh708")
+
+[node name="Cursor" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("1_lavcq")

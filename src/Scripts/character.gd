@@ -66,8 +66,8 @@ func walk_out() -> void:
 		emoji_sfx.pitch_scale = 0.5
 		emoji_sfx.play()
 	elif emotion.region_rect == Rect2(44.0, 0.0, 11.084, 10.0):
-		angry_sfx.play()
 		EventBus.take_health.emit()
+		angry_sfx.play()
 		
 	animation_player.play("walk_out")
 	await animation_player.animation_finished

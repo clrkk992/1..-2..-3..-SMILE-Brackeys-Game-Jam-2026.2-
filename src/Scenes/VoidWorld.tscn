@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://lu7yty1fn4of" path="res://src/Scenes/button.tscn" id="10_fljgt"]
 [ext_resource type="PackedScene" uid="uid://pcq8ocms05y4" path="res://src/Assets/Models/Studio/clock.glb" id="11_sf8am"]
 [ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="12_adckm"]
-[ext_resource type="Shader" uid="uid://bn0554uot455c" path="res://src/vignette_effect.gdshader" id="13_gwb7g"]
+[ext_resource type="Shader" uid="uid://bn0554uot455c" path="res://src/Shaders/vignette_effect.gdshader" id="13_gwb7g"]
 [ext_resource type="PackedScene" uid="uid://b1x5oe7ufpf2s" path="res://src/Assets/Models/picture_frame.glb" id="13_q44d3"]
 [ext_resource type="AudioStream" uid="uid://ct7d8tgqktidp" path="res://src/Assets/SFX/whoosh.mp3" id="14_bkjo4"]
 [ext_resource type="Texture2D" uid="uid://dbhh7agrqxm78" path="res://src/Assets/Characters/ActorB/Wife.png" id="14_hyfyk"]

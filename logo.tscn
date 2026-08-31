@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://doc0ggym6tpus" path="res://src/Assets/Characters/ActorC/ActorC_2.png" id="7_41yq4"]
 [ext_resource type="Texture2D" uid="uid://qlshvybhrdpa" path="res://src/Assets/Characters/ActorC/ActorC_4.png" id="8_6cx1e"]
 [ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="9_e3itj"]
-[ext_resource type="Shader" uid="uid://bn0554uot455c" path="res://src/vignette_effect.gdshader" id="10_7n3pv"]
+[ext_resource type="Shader" uid="uid://bn0554uot455c" path="res://src/Shaders/vignette_effect.gdshader" id="10_7n3pv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c8vj1"]
 shader = ExtResource("10_7n3pv")

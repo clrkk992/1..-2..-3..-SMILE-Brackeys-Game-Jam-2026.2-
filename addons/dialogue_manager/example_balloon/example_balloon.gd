@@ -74,6 +74,17 @@ var mutation_cooldown: Timer = Timer.new()
 
 var current_character: String = ""
 
+func skip_all_dialogue() -> void:
+	var line := dialogue_line
+	
+	while is_instance_valid(line) and not line.next_id.is_empty():
+		line = await dialogue_resource.get_next_dialogue_line(
+			line.next_id,
+			temporary_game_states
+		)
+	
+	dialogue_line = line
+	
 func _ready() -> void:
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
@@ -174,7 +185,6 @@ func apply_dialogue_line() -> void:
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
 
-
 ## Go to the next line
 func next(next_id: String) -> void:
 	dialogue_line = await dialogue_resource.get_next_dialogue_line(next_id, temporary_game_states)
@@ -244,3 +254,7 @@ func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -
 	talk_sound.play()
 
 #endregion
+
+
+func _on_button_pressed() -> void:
+	skip_all_dialogue()

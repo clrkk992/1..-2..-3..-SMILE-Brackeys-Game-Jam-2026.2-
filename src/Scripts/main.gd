@@ -5,14 +5,11 @@ extends Node3D
 @onready var current_character: Node3D = null
 @onready var characters_spawn_point: Marker3D = $CharactersSpawnPoint
 @onready var new_character_instance := preload("uid://vd7ty0jdgnb2")
-@onready var cursor: Sprite2D = %Cursor
 @onready var light: OmniLight3D = %OmniLight3D
 @onready var sun: DirectionalLight3D = $Sun
 @onready var camera_shutter_sfx: AudioStreamPlayer3D = %CameraShutterSFX
 @onready var light_off_sfx: AudioStreamPlayer3D = %LightOffSFX
 @onready var light_timer: Timer = $LightTimer
-
-@export var sun_gradient: Gradient
 
 var changing_character := false
 

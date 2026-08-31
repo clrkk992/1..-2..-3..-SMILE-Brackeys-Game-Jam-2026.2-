@@ -12,6 +12,7 @@ config_version=5
 
 config/name="1.. 2.. 3.. SMILE!"
 run/main_scene="uid://p25m6aa76m6"
+run/disable_stdout=true
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +22,12 @@ SceneTransition="*res://src/Scenes/scene_transition.tscn"
 EventBus="*res://src/Scripts/EventBus.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 MusicManager="*res://src/Scenes/music_manager.tscn"
+Mouse="*res://src/Scenes/mouse.tscn"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
+gdscript/warnings/shadowed_variable=0
 
 [display]
 
@@ -37,8 +44,10 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 folder_colors={
 "res://src/Assets/": "green",
+"res://src/Dialogues/": "blue",
 "res://src/Scenes/": "yellow",
-"res://src/Scripts/": "red"
+"res://src/Scripts/": "red",
+"res://src/Shaders/": "teal"
 }
 
 [input]

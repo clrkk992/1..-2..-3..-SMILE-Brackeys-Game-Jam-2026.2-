@@ -1,16 +1,11 @@
-[gd_scene load_steps=137 format=4 uid="uid://p25m6aa76m6"]
+[gd_scene load_steps=134 format=4 uid="uid://p25m6aa76m6"]
 
 [ext_resource type="Script" uid="uid://dob0ng7pmfk64" path="res://src/Scripts/main.gd" id="1_j4yc3"]
 [ext_resource type="PackedScene" uid="uid://csg1tid2hsgm8" path="res://src/Scenes/player.tscn" id="3_eml7d"]
-[ext_resource type="Texture2D" uid="uid://dw3ujc1bydlo" path="res://src/Assets/Cursor.png" id="4_xyvdf"]
-[ext_resource type="Script" uid="uid://dk03jwiibs08m" path="res://src/Scripts/cursor.gd" id="5_xyvdf"]
 [ext_resource type="Texture2D" uid="uid://mg8p8sqbe5ui" path="res://src/Assets/Models/Studio/photography_studio_equipment_0.png" id="6_d85jq"]
 [ext_resource type="PackedScene" uid="uid://cy5r385m80cqn" path="res://src/Assets/Models/Studio/boxes_and_checklist.glb" id="7_d85jq"]
 [ext_resource type="AudioStream" uid="uid://2r8el8ycukqw" path="res://src/Assets/SFX/camera shutter.mp3" id="8_ohpsy"]
 [ext_resource type="AudioStream" uid="uid://h0ef50abv3ef" path="res://src/Assets/SFX/light off.mp3" id="9_p301h"]
-
-[sub_resource type="Gradient" id="Gradient_d85jq"]
-colors = PackedColorArray(1, 1, 0.698039, 1, 1, 0.396078, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d85jq"]
 albedo_color = Color(0.314316, 0.314316, 0.314316, 1)
@@ -1832,7 +1827,6 @@ glow_blend_mode = 1
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j4yc3")
-sun_gradient = SubResource("Gradient_d85jq")
 
 [node name="Room" type="Node3D" parent="."]
 
@@ -2305,15 +2299,6 @@ skeleton = NodePath("")
 transform = Transform3D(0.482536, -5.2355e-17, -0.158534, 5.22905e-17, -0.188417, 6.93107e-17, -0.751285, -4.67407e-17, -0.101823, -9.94778, 0.137299, -3.64257)
 mesh = SubResource("ArrayMesh_r4d2r")
 skeleton = NodePath("")
-
-[node name="Mouse" type="CanvasLayer" parent="."]
-layer = 128
-
-[node name="Cursor" type="Sprite2D" parent="Mouse"]
-unique_name_in_owner = true
-texture_filter = 1
-texture = ExtResource("4_xyvdf")
-script = ExtResource("5_xyvdf")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

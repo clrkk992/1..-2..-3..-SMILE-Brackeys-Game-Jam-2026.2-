@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var try_again: Label = $Button/TryAgain
 
 func load_scene(target_scene: String) -> void:
-	animation_player.play("blink")
+	animation_player.play("black_flash")
 	await animation_player.animation_finished
 	get_tree().change_scene_to_file(target_scene)
 	animation_player.play_backwards("blink")
@@ -24,13 +24,6 @@ func game_over() -> void:
 func the_end_yeyy() -> void:
 	animation_player.play("the_end")
 
-func _on_button_mouse_entered() -> void:
-	try_again.modulate = "ffffff64"
-
-func _on_button_mouse_exited() -> void:
-	try_again.modulate = "ffffff"
-
-func _on_button_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("click"):
-		get_tree().change_scene_to_file("uid://p25m6aa76m6")
-		animation_player.play_backwards("blink")
+func _on_try_again_button_pressed() -> void:
+	get_tree().change_scene_to_file("uid://p25m6aa76m6")
+	animation_player.play_backwards("blink")
