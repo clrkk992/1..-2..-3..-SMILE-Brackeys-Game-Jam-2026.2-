@@ -1,0 +1,231 @@
+~ dialogue_1
+
+Boss: Rise and shine, sleeping beauty
+Boss: Time to get to work
+You: Wait, [wait=0.3][speed=0.5]where am I?
+Boss: I assume you've already read the tutorial from the itch page
+You: Uhmm... [wait=0.3]yeah. [wait=0.3][speed=0.5]I gu-guess
+You: I-I just don't understand what's going on
+You: I left this job already
+Boss: You really think you can escape me
+Boss: Do you [shake rate=50.0 level=10]NOT LIKE THIS JOB, BOY!![/shake]
+You: O-of couse, I like this job, s-sir
+You: I am so sorry, sir
+Boss: Good, [wait=0.5]that's what I wanna hear
+Boss: Now remember,
+Boss: You must always satisfy all customers
+Boss: Let many customers leave unsatisfied,
+Boss: and [shake rate=50.0 level=10]I WILL FIRE YOU!![/shake]
+You: [wait=0.5][speed=0.5]W-what's g-going on?
+do EventBus.tutorial_started.emit()
+do! MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
+do EventBus.spawn_chars_enabled = true
+do EventBus.character_finished.emit()
+
+=> END
+
+~ dialogue_2
+
+do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
+do! EventBus.spawn_chars_enabled = false
+do EventBus.tutorial_started.emit()
+???: [[Hello|Hey there]]
+You: W-what's this place?
+You: Where am I?
+???: Don't worry you can trust me
+???: I'm here to help you
+You: Who are you?
+???: I'm [wait=0.3][wave]No One[/wave]
+No One: I may not look like it
+No One: But I'm the only one who can help you
+You: Why should I trust you?
+No One: Because I knew your wife
+You: How did you know her?!
+No One: It doesn't matter
+No One: You need to listen to me
+No One: You must survive until 5PM
+No One: It's the only way you can escape this nightmare
+You: What do you mean?
+You: [shake rate=50.0 level=10]WHERE AM I?!?![/shake]
+
+do! SceneTransition.load_scene("uid://p25m6aa76m6")
+
+=> END
+	
+~ dialogue_3
+
+Notification: (New update in checklist. Please check it out.)
+You: .[wait=0.2].[wait=0.2].
+You: What the... [wait=0.5]I'm back?
+Boss: Why are you dozing off at work, BOY!
+You: I'm so s-sorry, sir
+You: It won't happen again
+Boss: [shake rate=50.0 level=10]GET BACK TO WORK![/shake]
+do EventBus.tutorial_started.emit()
+do MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
+do EventBus.spawn_chars_enabled = true
+do EventBus.character_finished.emit()
+
+=> END
+
+~ dialogue_4
+
+do EventBus.spawn_chars_enabled = false
+do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
+do EventBus.tutorial_started.emit()
+You: Wait, what?
+You: I'm back here again
+You: Care to explain everything now?
+No One: You really don't remember anything?
+You: No
+No One: You're physical body is currently at a coma right now
+No One: After your wife died, [wait=0.3]you let yourself go
+do! MusicManager.play_music("uid://cst1ip7prm7ch", -7.0) #sad_music
+No One: You started drinking, [wait=0.3]picking fights,
+No One: [wait=0.3]and stopped socializing with people
+No One: Your body couldn't handle it,
+No One: and that demon wanted to punish you for it
+You: Is that why I'm back to my old job again?
+No One: It knows you're afraid of your boss
+No One: Which is why, he is there to [wait=0.3][speed=0.5]torture you
+No One: If you get fired, the loop repeats again
+No One: and you will be trapped here forever
+No One: That's why you must survive until 5PM
+No One: That is the end of your shift and after that-
+You: Wait!
+do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
+You: What about you?
+You: My wife must have sent you to help me, right?
+No One: Not exactly
+No One: But that's not really a problem
+No One: [speed=0.2]Trust me
+No One: You need to go back
+No One: He's looking for you
+
+do! SceneTransition.load_scene("uid://p25m6aa76m6")
+
+=> END
+
+~ dialogue_5
+
+Notification: (New update in checklist. Please check it out.)
+Boss: I thought I already told you
+Boss: NOT TO SLEEP ON THE JOB!!
+Boss: Just
+Boss: Get
+Boss: Back
+Boss: To
+Boss: WORK!!
+You: Y-Yes, sir
+do EventBus.tutorial_started.emit()
+do! MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
+do EventBus.spawn_chars_enabled = true
+do EventBus.character_finished.emit()
+
+=> END
+
+~ dialogue_6
+
+do EventBus.spawn_chars_enabled = false
+do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
+do EventBus.tutorial_started.emit()
+You: I think it's better to just accept my fate
+You: I deserve this after everything I've done
+You: I don't even wanna live anymore
+You: She was everything to me
+You: And now she’s gone
+do! MusicManager.play_music("uid://cst1ip7prm7ch", -7.0) #sad_music
+No One: You know she’s not gone
+No One: I'm sure she's still there looking out for you
+You: Oh yeah
+You: Well what do you know
+You: I don't even know who you really are
+You: Or what's your relationship with my wife
+No One: I know how hard it is to lose someone you love
+No One: I know how lonely it feels
+No One: I know how empty it feels
+No One: But we owe it to them to keep moving forward
+No One: No matter how many times you fell in your knees
+No One: We owe it to them to keep standing up
+No One: So please
+No One: Do it for your wife
+No One: For Lisa
+No One: Don’t give up now!
+
+do! SceneTransition.load_scene("uid://p25m6aa76m6")
+
+=> END
+
+~ dialogue_7
+
+do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
+Notification: (New update in checklist. Please check it out.)
+You: I can't give up right now.
+You: I can do this.
+do EventBus.tutorial_started.emit()
+do! MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
+do EventBus.spawn_chars_enabled = true
+do EventBus.character_finished.emit()
+
+=> END
+
+~ dialogue_8
+
+do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
+do EventBus.spawn_chars_enabled = false
+set EventBus.remove_no_one = true
+do EventBus.tutorial_started.emit()
+You: What?
+You: Where is-
+do SceneTransition.load_scene("uid://p25m6aa76m6")
+
+=> END
+
+~ dialogue_9
+
+Notification: (New update in checklist. Please check it out.)
+Boss: So this was your plan all this time
+Boss: Survive ‘till 5PM and you can finally escape
+Boss: You really believe that
+Boss: You’re more naive than I thought you were
+You: Where is No One.
+Boss: I'll be more worried for myself if I were you
+Boss ‘Cause I’ll make sure that you won’t escape this [shake rate=50.0 level=10]NIGHTMARE![/shake]
+do EventBus.tutorial_started.emit()
+do MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
+do EventBus.spawn_chars_enabled = true
+do EventBus.character_finished.emit()
+
+=> END
+
+~ dialogue_10
+
+do EventBus.spawn_chars_enabled = false
+do MusicManager.play_music("uid://cst1ip7prm7ch", -5.0) #sad_music
+set EventBus.remove_no_one = false
+do EventBus.tutorial_started.emit()
+You: [[Hey|Hello]] there
+You: I finally did it
+No One: Thank you for listening to me
+You: I should be thanking you
+You: You helped me get back to my senses
+You: So what will happen to you now
+No One: I'm gonna go back to heaven again
+You: Can't you just stay with me?
+No One: You gotta let me go
+You: I can’t
+You: I missed you
+No One: I know
+No One: But you need to move on
+No One: I can't be happy if I see you like that everytime
+No One: I'm sure that life will give you more opportunities
+No One: You’ll go to places you've never been before
+No One: You'll meet many people who will make you laugh again
+No One: Just know that I am always with you
+No One: No matter what happens
+No One: I love you
+You: I love you too, Lisa
+
+do SceneTransition.the_end_yeyy()
+
+=> END

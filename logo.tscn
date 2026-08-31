@@ -1,0 +1,124 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3430ifgtvv3j"]
+
+[ext_resource type="Texture2D" uid="uid://vyam02dvt42h" path="res://src/Assets/Characters/ActorA/ActorA_1.png" id="1_km3ge"]
+[ext_resource type="Texture2D" uid="uid://cllp5lg6gd255" path="res://src/Assets/Characters/ActorA/Void.png" id="2_13gaw"]
+[ext_resource type="Texture2D" uid="uid://b5jsvkc8yrlft" path="res://src/Assets/Characters/ActorB/ActorB_1.png" id="3_m1qkf"]
+[ext_resource type="Texture2D" uid="uid://871n2woymsbe" path="res://src/Assets/Characters/ActorB/ActorB_2.png" id="4_qwjy2"]
+[ext_resource type="Texture2D" uid="uid://bcyrr1fil6ucq" path="res://src/Assets/Characters/ActorD/Ghost.png" id="5_ydiq5"]
+[ext_resource type="Texture2D" uid="uid://bl8moebfqo0ps" path="res://src/Assets/Characters/ActorD/ActorD_2.png" id="6_81q0v"]
+[ext_resource type="Texture2D" uid="uid://doc0ggym6tpus" path="res://src/Assets/Characters/ActorC/ActorC_2.png" id="7_41yq4"]
+[ext_resource type="Texture2D" uid="uid://qlshvybhrdpa" path="res://src/Assets/Characters/ActorC/ActorC_4.png" id="8_6cx1e"]
+[ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="9_e3itj"]
+[ext_resource type="Shader" uid="uid://bn0554uot455c" path="res://src/vignette_effect.gdshader" id="10_7n3pv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8vj1"]
+shader = ExtResource("10_7n3pv")
+shader_parameter/vignette_intensity = 0.2
+shader_parameter/scanline_count = 1000.0
+shader_parameter/scanline_opacity = 0.1
+shader_parameter/rgb_split = 0.0
+shader_parameter/distortion_amount = 0.0
+shader_parameter/ui_color = Color(1, 1, 1, 1)
+shader_parameter/show_crosshair = false
+shader_parameter/crosshair_size = 0.05
+shader_parameter/line_thickness = 0.002
+shader_parameter/show_borders = true
+shader_parameter/border_margin = 0.05
+shader_parameter/border_length = 0.08
+
+[node name="Logo" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2067.0
+offset_top = 342.0
+offset_right = 2663.0
+offset_bottom = 1011.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ActorA2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3066, 1644.11)
+scale = Vector2(10, 10)
+texture = ExtResource("1_km3ge")
+
+[node name="ActorA3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3476, 1629.11)
+scale = Vector2(10, 10)
+texture = ExtResource("2_13gaw")
+
+[node name="ActorA8" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3040.07, 892.911)
+rotation = -3.13714
+scale = Vector2(10, 10)
+texture = ExtResource("3_m1qkf")
+
+[node name="ActorA9" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3450.07, 877.911)
+rotation = -3.13714
+scale = Vector2(10, 10)
+texture = ExtResource("4_qwjy2")
+
+[node name="ActorA4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3948, 1459.11)
+rotation = -1.56225
+scale = Vector2(10, 10)
+texture = ExtResource("5_ydiq5")
+
+[node name="ActorA5" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3944, 1055.11)
+rotation = -1.56225
+scale = Vector2(10, 10)
+texture = ExtResource("6_81q0v")
+
+[node name="ActorA6" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2572, 1093.11)
+rotation = 1.57817
+scale = Vector2(10, 10)
+texture = ExtResource("7_41yq4")
+
+[node name="ActorA7" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2587, 1517.11)
+rotation = 1.57817
+scale = Vector2(10, 10)
+texture = ExtResource("8_6cx1e")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1879.0
+offset_top = 676.112
+offset_right = 2721.0
+offset_bottom = 791.112
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_e3itj")
+theme_override_font_sizes/font_size = 100
+text = "1.. 2.. 3.. SMILE!"
+
+[node name="CameraEffect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_c8vj1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2070.0
+offset_top = 346.0
+offset_right = 2648.0
+offset_bottom = 1008.0
+grow_horizontal = 2
+grow_vertical = 2

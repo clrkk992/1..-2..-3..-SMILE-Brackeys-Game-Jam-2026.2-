@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://csg1tid2hsgm8"]
+[gd_scene load_steps=59 format=4 uid="uid://csg1tid2hsgm8"]
 
 [ext_resource type="Script" uid="uid://bypt1wm4delsh" path="res://src/Scripts/player.gd" id="1_630vu"]
 [ext_resource type="Texture2D" uid="uid://mg8p8sqbe5ui" path="res://src/Assets/Models/Studio/photography_studio_equipment_0.png" id="2_nuidu"]
@@ -11,7 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://cde8qbav5j40e" path="res://src/Assets/Models/laptop_2.png" id="7_wanlr"]
 [ext_resource type="Texture2D" uid="uid://cvqo4pcl4xijh" path="res://src/Assets/Models/laptop_4.png" id="8_ko0n8"]
 [ext_resource type="Texture2D" uid="uid://bbq2h3vsfau3j" path="res://src/Assets/Models/laptop_3.png" id="9_rwblb"]
+[ext_resource type="PackedScene" uid="uid://pcq8ocms05y4" path="res://src/Assets/Models/Studio/clock.glb" id="11_ko0n8"]
+[ext_resource type="Shader" uid="uid://slo5258mmlf7" path="res://src/screen_effect.gdshader" id="11_rwblb"]
 [ext_resource type="AudioStream" uid="uid://ct7d8tgqktidp" path="res://src/Assets/SFX/whoosh.mp3" id="12_26mal"]
+[ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="12_rwblb"]
+[ext_resource type="PackedScene" uid="uid://b1x5oe7ufpf2s" path="res://src/Assets/Models/picture_frame.glb" id="14_ssl7k"]
+[ext_resource type="Texture2D" uid="uid://dbhh7agrqxm78" path="res://src/Assets/Characters/ActorB/Wife.png" id="15_vq6dv"]
+[ext_resource type="Shader" uid="uid://bluxp1xbmx774" path="res://src/health_overlay.gdshader" id="15_yvnj0"]
+[ext_resource type="AudioStream" uid="uid://dqy13g2p4rxke" path="res://src/Assets/SFX/paper.mp3" id="17_ssvke"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycbtq"]
 resource_name = "LowPolyModelsWorld"
@@ -175,6 +182,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jo6yi")
 
+[sub_resource type="QuadMesh" id="QuadMesh_ssl7k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ssl7k"]
+albedo_color = Color(0.205117, 0.205117, 0.205117, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftypd"]
 resource_name = "ComputerFrame"
 cull_mode = 2
@@ -269,35 +281,111 @@ emission_enabled = true
 emission = Color(0, 0, 1, 1)
 emission_energy_multiplier = 1.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm553"]
-shader = ExtResource("5_sm553")
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/scanline_count = 1000.0
-shader_parameter/scanline_opacity = 0.06
-shader_parameter/rgb_split = 0.0
-shader_parameter/distortion_amount = 0.03
-shader_parameter/ui_color = Color(1, 1, 1, 0.392157)
-shader_parameter/show_crosshair = false
-shader_parameter/crosshair_size = 0.03
-shader_parameter/line_thickness = 0.002
-shader_parameter/show_borders = true
-shader_parameter/border_margin = 0.05
-shader_parameter/border_length = 0.08
+[sub_resource type="QuadMesh" id="QuadMesh_yvnj0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lq0qa"]
-shader = ExtResource("5_sm553")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvke"]
+render_priority = 0
+shader = ExtResource("11_rwblb")
 shader_parameter/vignette_intensity = 0.0
 shader_parameter/scanline_count = 1000.0
 shader_parameter/scanline_opacity = 0.06
 shader_parameter/rgb_split = 0.002
 shader_parameter/distortion_amount = 0.01
+shader_parameter/ui_color = Color(1, 1, 1, 0)
+shader_parameter/show_crosshair = false
+shader_parameter/crosshair_size = 0.05
+shader_parameter/line_thickness = 0.002
+shader_parameter/show_borders = false
+shader_parameter/border_margin = 0.05
+shader_parameter/border_length = 0.08
+
+[sub_resource type="BoxMesh" id="BoxMesh_yvnj0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ssvke"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4rpj"]
+shader = ExtResource("15_yvnj0")
+shader_parameter/damage_intensity = 0.0
+shader_parameter/flash_color = Color(0.8, 0, 0, 1)
+shader_parameter/vignette_softness = 4.0
+shader_parameter/pulse_speed = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvnj0"]
+shader = ExtResource("5_sm553")
+shader_parameter/vignette_intensity = 0.2
+shader_parameter/scanline_count = 1000.0
+shader_parameter/scanline_opacity = 0.1
+shader_parameter/rgb_split = 0.0
+shader_parameter/distortion_amount = 0.0
 shader_parameter/ui_color = Color(1, 1, 1, 1)
 shader_parameter/show_crosshair = false
 shader_parameter/crosshair_size = 0.05
 shader_parameter/line_thickness = 0.002
 shader_parameter/show_borders = true
 shader_parameter/border_margin = 0.05
-shader_parameter/border_length = 0.03
+shader_parameter/border_length = 0.08
+
+[sub_resource type="Animation" id="Animation_p4rpj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%CameraEffect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%HealthOverlay:material:shader_parameter/damage_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ssvke"]
+resource_name = "hurt"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%CameraEffect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%HealthOverlay:material:shader_parameter/damage_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.400017, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ssl7k"]
+_data = {
+&"RESET": SubResource("Animation_p4rpj"),
+&"hurt": SubResource("Animation_ssvke")
+}
 
 [sub_resource type="Animation" id="Animation_waosb"]
 length = 0.001
@@ -376,7 +464,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("%LaptopEffect:visible")
+tracks/6/path = NodePath("../UI/Control/CameraEffect:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -388,7 +476,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("%CameraEffect:visible")
+tracks/7/path = NodePath("../ClipboardSFX:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -440,14 +528,26 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%CameraEffect:visible")
+tracks/3/path = NodePath("../UI/Control/CameraEffect:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.571403, 0.6),
+"times": PackedFloat32Array(0, 0.566667, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../ClipboardSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_nuidu"]
@@ -489,6 +589,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(1.5708, 0, -1.5708), Vector3(1.5708, 0, -1.5708), Vector3(-0.670206, -1.5708, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ClipboardSFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_vhadf"]
 resource_name = "laptop"
@@ -508,26 +620,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:fov")
+tracks/1/path = NodePath("../ClipboardSFX:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [75.0, 22.4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%LaptopEffect:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.569829, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, false, true]
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vhadf"]
@@ -540,7 +640,7 @@ _data = {
 
 [node name="Player" type="Node3D" node_paths=PackedStringArray("char_list")]
 script = ExtResource("1_630vu")
-char_list = [NodePath("ClipBoard/Character"), NodePath("ClipBoard/Character2"), NodePath("ClipBoard/Character3"), NodePath("ClipBoard/Character4"), NodePath("ClipBoard/Character5"), NodePath("ClipBoard/Character6"), NodePath("ClipBoard/Character7"), NodePath("ClipBoard/Character8")]
+char_list = [NodePath("ClipBoard/Character"), NodePath("ClipBoard/Character2"), NodePath("ClipBoard/Character3"), NodePath("ClipBoard/Character4"), NodePath("ClipBoard/Character5"), NodePath("ClipBoard/Character6")]
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0122222, -0.0079952, 0)
@@ -586,34 +686,62 @@ skeleton = NodePath("")
 
 [node name="Character" parent="ClipBoard" instance=ExtResource("3_wquk2")]
 transform = Transform3D(0.8, 1.69392e-20, 2.27374e-13, 0, 0.8, -5.95995e-08, -2.27374e-13, 5.95995e-08, 0.8, -0.5182, 0.821964, 0.038417)
+visible = false
 
 [node name="Character2" parent="ClipBoard" instance=ExtResource("3_wquk2")]
 transform = Transform3D(0.8, 9.09495e-13, 0, 0, 0.8, -2.98074e-08, -2.27374e-13, 2.97972e-08, 0.8, 0.238952, 0.821965, 0.0384159)
 visible = false
+id = 2
 
 [node name="Character3" parent="ClipBoard" instance=ExtResource("3_wquk2")]
 transform = Transform3D(0.8, 1.69392e-20, 2.27374e-13, 0, 0.8, -5.95995e-08, -2.27374e-13, 5.95995e-08, 0.8, -0.518, 0.287, 0.039)
 visible = false
+id = 3
 
 [node name="Character4" parent="ClipBoard" instance=ExtResource("3_wquk2")]
 transform = Transform3D(0.8, 9.09495e-13, 0, 0, 0.8, -2.98074e-08, -2.27374e-13, 2.97972e-08, 0.8, 0.238952, 0.287001, 0.0389987)
 visible = false
+id = 4
 
 [node name="Character5" parent="ClipBoard" instance=ExtResource("3_wquk2")]
 transform = Transform3D(0.8, 1.69392e-20, 2.27374e-13, 0, 0.8, -5.95995e-08, -2.27374e-13, 5.95995e-08, 0.8, -0.518, -0.232, 0.043)
 visible = false
+id = 5
 
 [node name="Character6" parent="ClipBoard" instance=ExtResource("3_wquk2")]
 transform = Transform3D(0.8, 9.09495e-13, 0, 0, 0.8, -2.98074e-08, -2.27374e-13, 2.97972e-08, 0.8, 0.238952, -0.231999, 0.0429989)
 visible = false
+id = 6
 
 [node name="Character7" parent="ClipBoard" instance=ExtResource("3_wquk2")]
 transform = Transform3D(0.8, 1.69392e-20, 2.27374e-13, 0, 0.8, -5.95995e-08, -2.27374e-13, 5.95995e-08, 0.8, -0.518, -0.773, 0.042)
 visible = false
+id = 7
 
 [node name="Character8" parent="ClipBoard" instance=ExtResource("3_wquk2")]
 transform = Transform3D(0.8, 6.82121e-13, 2.27374e-13, 0, 0.8, -5.96097e-08, -2.27374e-13, 5.95995e-08, 0.8, 0.238952, -0.772999, 0.0419987)
 visible = false
+id = 8
+
+[node name="Label3D" type="Label3D" parent="ClipBoard"]
+transform = Transform3D(0.5, 1.02318e-12, -3.41061e-13, 1.13687e-13, 0.5, -3.18952e-12, -2.27374e-13, -3.18953e-12, 0.5, -0.670406, -0.967925, 0.0450335)
+outline_modulate = Color(0, 0, 0, 0)
+text = "No. of  Unsatisfied
+Customers: "
+font = ExtResource("12_rwblb")
+horizontal_alignment = 0
+
+[node name="Health" type="Label3D" parent="ClipBoard"]
+transform = Transform3D(0.7, 1.13687e-13, 2.27374e-13, 2.27374e-13, 0.7, -4.46533e-12, -4.54747e-13, -4.46533e-12, 0.7, 0.232123, -0.967924, 0.0450307)
+outline_modulate = Color(0, 0, 0, 0)
+text = "0 / 10"
+font = ExtResource("12_rwblb")
+horizontal_alignment = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ClipBoard"]
+transform = Transform3D(1.41045, 7.38964e-13, -1.13687e-13, 0, 0.283098, 1.48984e-08, -4.54747e-13, -7.45076e-08, 0.432448, -0.0270627, -0.971007, 0.0274285)
+mesh = SubResource("QuadMesh_ssl7k")
+surface_material_override/0 = SubResource("StandardMaterial3D_ssl7k")
 
 [node name="Laptop" type="Node3D" parent="."]
 transform = Transform3D(-7.19065e-05, 0, 0.00799968, 0, 0.008, 0, -0.00799968, 0, -7.19065e-05, -0.271212, -0.118148, -0.00290751)
@@ -660,6 +788,42 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 6.51926e-09, 0, 1, 0, -6.51926e-09, 0, 1, 9.83567, -7.6426, 0.0884132)
 label_text = "color: white           "
 
+[node name="CameraEffect" type="MeshInstance3D" parent="Laptop"]
+transform = Transform3D(29.4877, -0.00948831, -0.00055081, 0.0160361, 17.2408, -0.000258271, 0.109776, 0.0300509, 0.148001, 4.50218, 10.7725, -10.4683)
+visible = false
+mesh = SubResource("QuadMesh_yvnj0")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_ssvke")
+
+[node name="Clock" parent="Laptop" instance=ExtResource("11_ko0n8")]
+transform = Transform3D(3.04855, 0, 2.18376, 0, 3.75, 0, -2.18376, 0, 3.04855, -16.1249, -0.325139, 7.47777)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Laptop/Clock"]
+transform = Transform3D(3.08062, 0, 1.86265e-09, 0, 1.35741, 0, 0, 0, -0.014315, 0.0169699, 0.96543, -0.160209)
+mesh = SubResource("BoxMesh_yvnj0")
+surface_material_override/0 = SubResource("StandardMaterial3D_ssvke")
+
+[node name="Label3D" type="Label3D" parent="Laptop/Clock"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0494287, 0.994064, -0.143566)
+text = "8 AM"
+font = ExtResource("12_rwblb")
+font_size = 150
+
+[node name="Timer" type="Timer" parent="Laptop/Clock/Label3D"]
+wait_time = 60.0
+autostart = true
+
+[node name="pic_frame" parent="Laptop" instance=ExtResource("14_ssl7k")]
+transform = Transform3D(-7.10554, 0, -2.40026, 0, 7.5, 0, 2.40026, 0, -7.10554, -17.5349, 6.30682, -4.13269)
+
+[node name="Sprite3D" type="Sprite3D" parent="Laptop/pic_frame"]
+transform = Transform3D(-2.39966, 0.00782827, -0.0398887, -0.00929418, 2.18703, 0.988334, 0.039573, 0.988347, -2.18669, 0.0716894, 0.0716727, -0.121149)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("15_vq6dv")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="UI"]
@@ -671,10 +835,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="CameraEffect" type="ColorRect" parent="UI/Control"]
+[node name="HealthOverlay" type="ColorRect" parent="UI/Control"]
 unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_sm553")
+modulate = Color(1, 1, 1, 0.00784314)
+material = SubResource("ShaderMaterial_p4rpj")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -683,21 +847,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="LaptopEffect" type="ColorRect" parent="UI/Control"]
+[node name="CameraEffect" type="ColorRect" parent="UI/Control"]
 unique_name_in_owner = true
 visible = false
-material = SubResource("ShaderMaterial_lq0qa")
+material = SubResource("ShaderMaterial_yvnj0")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 226.0
-offset_top = 50.0
-offset_right = -217.0
-offset_bottom = -167.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+
+[node name="HealthAnimationPlayer" type="AnimationPlayer" parent="UI/Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_ssl7k")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Camera")
@@ -708,3 +872,8 @@ libraries = {
 [node name="WhooshSFX" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_26mal")
 volume_db = -30.0
+
+[node name="ClipboardSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("17_ssvke")
+
+[connection signal="timeout" from="Laptop/Clock/Label3D/Timer" to="." method="_on_timer_timeout"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://lu7yty1fn4of"]
+[gd_scene load_steps=15 format=3 uid="uid://lu7yty1fn4of"]
 
 [ext_resource type="Script" uid="uid://d0mvmypjnjgcx" path="res://src/Scripts/button.gd" id="1_uik8s"]
 [ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="2_ythj8"]
 [ext_resource type="AudioStream" uid="uid://cppjtggp1j0au" path="res://src/Assets/SFX/mouse select.wav" id="3_ythj8"]
 [ext_resource type="AudioStream" uid="uid://d3a5w4pkcslda" path="res://src/Assets/SFX/rising.mp3" id="4_3cqok"]
+[ext_resource type="AudioStream" uid="uid://dpfb8gxnhsrx1" path="res://src/Assets/SFX/bar_succesful.mp3" id="5_tqx6w"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sm553"]
 
@@ -206,7 +207,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ythj8")
 
 [node name="ProgressBar" type="MeshInstance3D" parent="Label3D"]
-transform = Transform3D(0.0100242, -0.000123035, -2.61186e-05, 5.45223e-06, 0.223541, -1.22437e-05, 3.7322e-05, 0.000389593, 0.00701693, 0.00755367, 0.0113945, -0.00513005)
+transform = Transform3D(0.0100242, -0.000123045, -2.61201e-05, 5.45265e-06, 0.223541, -1.2243e-05, 3.73241e-05, 0.000389572, 0.00701693, 0.00755367, 0.0113945, -0.00513005)
 visible = false
 mesh = SubResource("BoxMesh_sm553")
 skeleton = NodePath("")
@@ -230,6 +231,10 @@ pitch_scale = 2.0
 [node name="RisingSFX" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_3cqok")
 volume_db = -40.0
+pitch_scale = 5.0
+
+[node name="Success" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_tqx6w")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

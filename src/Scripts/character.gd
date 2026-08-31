@@ -6,11 +6,9 @@ extends Node3D
 @onready var emotion: Sprite3D = %Emotion
 @onready var emoji_sfx: AudioStreamPlayer3D = %EmojiSFX
 @onready var angry_sfx: AudioStreamPlayer3D = %AngrySFX
-@onready var walk_sfx: AudioStreamPlayer3D = %WalkSFX
-@onready var timer_sfx: AudioStreamPlayer3D = %TimerSFX
 
 var texture_array: Array[String] = ["uid://vyam02dvt42h", "uid://ci4kj1fxqu1qt", "uid://dgf4kj7rvr0ls",
-									"uid://bciep55utw26t", "uid://cllp5lg6gd255", "uid://b5jsvkc8yrlft",
+									"uid://bciep55utw26t", "uid://b5jsvkc8yrlft",
 									"uid://871n2woymsbe", "uid://dfv61x7x3e63b", "uid://bg4u0nj5jjdpo",
 									"uid://rgvtmlogtndb", "uid://crurbwd4vkjjd", "uid://doc0ggym6tpus",
 									"uid://kmtkklxkorko", "uid://qlshvybhrdpa", "uid://dkgg61siqo7b0",
@@ -25,24 +23,27 @@ var required_color := "ffffff"
 
 func _ready() -> void:
 	EventBus.change_emote_angry.connect(change_emotion_angry)
-	randomizer = randi_range(0,18)
+	randomizer = randi_range(0,17)
 	sprite.texture = load(texture_array[randomizer])
 
 func walk_in() -> void:
 	animation_finished = false
 	
 	animation_player.play("walk_in")
-	walk_sfx.play()
 	await animation_player.animation_finished
-	walk_sfx.stop()
+	
+	#don't spawn new char if there is already a character spawned
+	if walk_in_interrupted:
+		return
 	
 	animation_player.play("idle")
 	animation_finished = true
 	
 	bar_animation_player.play("progress_bar")
-	timer_sfx.play()
-	await bar_animation_player.animation_finished
-	timer_sfx.stop()
+	var finished_animation = await bar_animation_player.animation_finished
+
+	if finished_animation != "progress_bar":
+		return
 	
 	#don't spawn new char if there is already a character spawned
 	if walk_in_interrupted:
@@ -66,11 +67,10 @@ func walk_out() -> void:
 		emoji_sfx.play()
 	elif emotion.region_rect == Rect2(44.0, 0.0, 11.084, 10.0):
 		angry_sfx.play()
+		EventBus.take_health.emit()
 		
 	animation_player.play("walk_out")
-	walk_sfx.play()
 	await animation_player.animation_finished
-	walk_sfx.stop()
 	
 	queue_free()
 	animation_finished = true

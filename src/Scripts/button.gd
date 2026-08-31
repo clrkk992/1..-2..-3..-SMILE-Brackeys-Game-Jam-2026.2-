@@ -5,6 +5,7 @@ extends Area3D
 @onready var color_bar: MeshInstance3D = %ColorBar
 @onready var select_sfx: AudioStreamPlayer3D = $SelectSFX
 @onready var rising_sfx: AudioStreamPlayer3D = $RisingSFX
+@onready var success: AudioStreamPlayer3D = $Success
 
 enum STATE {
 	CLICK,
@@ -26,7 +27,6 @@ enum COLOR {
 var hold_time: float = 0.0
 var required_hold_time: float = 2.3
 var is_holding: bool = false
-var triggered: bool = true
 
 #sequential click
 var press_count := 0
@@ -34,6 +34,7 @@ var current_color := COLOR.WHITE
 var color := "ffffff"
 
 func _ready() -> void:
+	EventBus.lights_triggered = true
 	label.text = label_text
 	if current_state == STATE.LONG_PRESS:
 		animation_player.play("progress_bar_complete")
@@ -50,16 +51,17 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(label, "scale", Vector3(20.0, 20.0, 20.0), 0.15)
-	if !triggered:
-		animation_player.play("RESET")
+	if current_state == STATE.LONG_PRESS:
+		if !EventBus.lights_triggered:
+			animation_player.play("RESET")
 
 func _on_input_event(_camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if current_state == STATE.LONG_PRESS:
-			if event.is_pressed() and !triggered:
+			if event.is_pressed() and !EventBus.lights_triggered:
 				is_holding = true
 				hold_time = 0.0
-				triggered = false
+				EventBus.lights_triggered = false
 				animation_player.play("progress_bar")
 				rising_sfx.play()
 			elif event.is_released():
@@ -99,7 +101,7 @@ func _stop_holding() -> void:
 	if is_holding:
 		is_holding = false
 		hold_time = 0.0
-		if !triggered:
+		if !EventBus.lights_triggered:
 			animation_player.play("RESET")
 			
 func shake_anim() -> void:
@@ -126,16 +128,14 @@ func change_color(_label: Label3D, _mat: StandardMaterial3D, text : String, _col
 
 func _process(delta: float) -> void:
 	if current_state == STATE.LONG_PRESS:
-		if is_holding and !triggered:
+		if is_holding and !EventBus.lights_triggered:
 			hold_time += delta
 			if hold_time >= required_hold_time:
-				triggered = true
-				shake_anim()
 				rising_sfx.stop()
+				EventBus.lights_triggered = true
+				shake_anim()
 				animation_player.play("progress_bar_complete")
-				select_sfx.pitch_scale = 5.0
-				select_sfx.volume_db = 0.0
-				select_sfx.play()
+				success.play()
 				
-		elif !triggered:
+		elif !EventBus.lights_triggered:
 			animation_player.play("RESET")
