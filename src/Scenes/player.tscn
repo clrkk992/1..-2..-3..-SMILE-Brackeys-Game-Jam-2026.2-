@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://csg1tid2hsgm8"]
+[gd_scene load_steps=57 format=4 uid="uid://csg1tid2hsgm8"]
 
 [ext_resource type="Script" uid="uid://bypt1wm4delsh" path="res://src/Scripts/player.gd" id="1_630vu"]
 [ext_resource type="Texture2D" uid="uid://mg8p8sqbe5ui" path="res://src/Assets/Models/Studio/photography_studio_equipment_0.png" id="2_nuidu"]
@@ -368,6 +368,9 @@ _data = {
 &"hurt": SubResource("Animation_ssvke")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4rpj"]
+size = Vector2(114, 61)
+
 [sub_resource type="Animation" id="Animation_waosb"]
 length = 0.001
 tracks/0/type = "value"
@@ -577,7 +580,7 @@ tracks/3/path = NodePath("../ClipboardSFX:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -625,6 +628,7 @@ char_list = [NodePath("ClipBoard/Character"), NodePath("ClipBoard/Character2"), 
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0122222, -0.0079952, 0)
+size = 0.001
 
 [node name="CameraModel" type="Node3D" parent="."]
 transform = Transform3D(-0.213747, 5.81145e-08, 0.210503, 0.015285, 0.299208, 0.0155205, -0.209948, 0.0217835, -0.213184, -0.00220288, 0.00634349, -0.152521)
@@ -837,11 +841,71 @@ libraries = {
 &"": SubResource("AnimationLibrary_ssl7k")
 }
 
+[node name="Buttons" type="Node2D" parent="UI/Control"]
+visible = false
+
+[node name="UpButton" type="Area2D" parent="UI/Control/Buttons"]
+position = Vector2(960, 62)
+rotation = -3.14159
+scale = Vector2(0.5, 0.5)
+
+[node name="Down" type="Polygon2D" parent="UI/Control/Buttons/UpButton"]
+position = Vector2(-49, -19)
+scale = Vector2(5, 5)
+polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Control/Buttons/UpButton"]
+position = Vector2(1, 6.5)
+shape = SubResource("RectangleShape2D_p4rpj")
+
+[node name="LeftButton" type="Area2D" parent="UI/Control/Buttons"]
+position = Vector2(62, 540)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+
+[node name="Left" type="Polygon2D" parent="UI/Control/Buttons/LeftButton"]
+position = Vector2(-49, -19)
+scale = Vector2(5, 5)
+polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Control/Buttons/LeftButton"]
+position = Vector2(1, 6.5)
+shape = SubResource("RectangleShape2D_p4rpj")
+
+[node name="RightButton" type="Area2D" parent="UI/Control/Buttons"]
+position = Vector2(1860, 540)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+
+[node name="Right" type="Polygon2D" parent="UI/Control/Buttons/RightButton"]
+position = Vector2(-49, -19)
+scale = Vector2(5, 5)
+polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Control/Buttons/RightButton"]
+position = Vector2(1, 6.5)
+shape = SubResource("RectangleShape2D_p4rpj")
+
+[node name="ButtonDown" type="Area2D" parent="UI/Control/Buttons"]
+position = Vector2(981, 1016)
+scale = Vector2(0.5, 0.5)
+
+[node name="Down" type="Polygon2D" parent="UI/Control/Buttons/ButtonDown"]
+unique_name_in_owner = true
+position = Vector2(-49, -19)
+scale = Vector2(5, 5)
+polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Control/Buttons/ButtonDown"]
+position = Vector2(1, 6.5)
+shape = SubResource("RectangleShape2D_p4rpj")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Camera")
 libraries = {
 &"": SubResource("AnimationLibrary_vhadf")
 }
+speed_scale = 1.5
 
 [node name="WhooshSFX" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_26mal")
@@ -851,3 +915,7 @@ volume_db = -30.0
 stream = ExtResource("17_ssvke")
 
 [connection signal="timeout" from="Laptop/Clock/Label3D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="input_event" from="UI/Control/Buttons/UpButton" to="." method="_on_up_button_input_event"]
+[connection signal="input_event" from="UI/Control/Buttons/LeftButton" to="." method="_on_left_button_input_event"]
+[connection signal="input_event" from="UI/Control/Buttons/RightButton" to="." method="_on_right_button_input_event"]
+[connection signal="input_event" from="UI/Control/Buttons/ButtonDown" to="." method="_on_down_button_input_event"]

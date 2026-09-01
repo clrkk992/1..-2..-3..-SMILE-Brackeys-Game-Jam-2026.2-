@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var try_again: Label = $Button/TryAgain
 
 func load_scene(target_scene: String) -> void:
 	animation_player.play("black_flash")
