@@ -1,0 +1,150 @@
+[gd_scene load_steps=13 format=3 uid="uid://k7327de05mfv"]
+
+[ext_resource type="Script" uid="uid://kvdlud4brogm" path="res://src/Scripts/Buttons&UI/physical_button.gd" id="1_vkf5r"]
+[ext_resource type="Shader" uid="uid://dpyjouy60yl3u" path="res://src/Shaders/outline.gdshader" id="2_as7xy"]
+[ext_resource type="AudioStream" uid="uid://c8d24py01tlr6" path="res://src/Assets/SFX/button press.mp3" id="3_o61hv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vq6dv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7t1t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_peb47"]
+albedo_color = Color(0.158472, 0.158472, 0.158472, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tfug1"]
+render_priority = 0
+shader = ExtResource("2_as7xy")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8sr4g"]
+size = Vector3(0.0301714, 0.0201416, 0.0271225)
+
+[sub_resource type="Animation" id="Animation_tfug1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer3D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1ct0m"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer3D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_as7xy"]
+resource_name = "pressed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.00386197, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer3D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.201723),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tfug1"]
+_data = {
+&"RESET": SubResource("Animation_tfug1"),
+&"default": SubResource("Animation_1ct0m"),
+&"pressed": SubResource("Animation_as7xy")
+}
+
+[node name="ColorButton" type="Node3D"]
+script = ExtResource("1_vkf5r")
+
+[node name="Button" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0142922, 0, 0.0153862, 0, -0.006, 0, -0.0153862, 0, 0.0142922, 0, 0, 0)
+mesh = SubResource("BoxMesh_vq6dv")
+surface_material_override/0 = SubResource("StandardMaterial3D_y7t1t")
+
+[node name="ButtonUnder" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0181337, 0, 0.0199317, 0, -0.00489995, 0, -0.0195217, 0, 0.0185145, 0, -0.00373559, 0)
+mesh = SubResource("BoxMesh_vq6dv")
+surface_material_override/0 = SubResource("StandardMaterial3D_peb47")
+
+[node name="Outline" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.0181337, 0, 0.0199317, 0, -0.00489995, 0, -0.0195217, 0, 0.0185145, 0, -0.00373559, 0)
+visible = false
+mesh = SubResource("BoxMesh_vq6dv")
+surface_material_override/0 = SubResource("ShaderMaterial_tfug1")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.968836, 0, 0.0275169, 0, 1.01238, 0, 0.0275151, 0, 0.964771, 2.92836e-08, 7.54278e-09, 1.51963e-08)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.670815, 0, 0.741625, 0, 0.999999, 0, -0.741625, 0, 0.670815, 0.000799985, 0.0042076, 0.000254582)
+shape = SubResource("BoxShape3D_8sr4g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Button")
+libraries = {
+&"": SubResource("AnimationLibrary_tfug1")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_o61hv")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

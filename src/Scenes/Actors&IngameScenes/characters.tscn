@@ -1,0 +1,565 @@
+[gd_scene load_steps=20 format=3 uid="uid://vd7ty0jdgnb2"]
+
+[ext_resource type="Script" uid="uid://dfxehhfigbg0y" path="res://src/Scripts/Actors&IngameScenes/character.gd" id="1_6wvwy"]
+[ext_resource type="Texture2D" uid="uid://vyam02dvt42h" path="res://src/Assets/Characters/ActorA/ActorA_1.png" id="2_3hs72"]
+[ext_resource type="Texture2D" uid="uid://dmho28ajraaid" path="res://src/Assets/Characters/Emojis/emojis.png" id="3_j603d"]
+[ext_resource type="AudioStream" uid="uid://bntujehqdwebt" path="res://src/Assets/SFX/emoji.wav" id="4_ege7m"]
+[ext_resource type="AudioStream" uid="uid://d2i1axb2nwm8i" path="res://src/Assets/SFX/angry emoji.wav" id="5_bfua1"]
+[ext_resource type="AudioStream" uid="uid://v6g7k0twtijw" path="res://src/Assets/SFX/walk.mp3" id="6_7evw8"]
+[ext_resource type="AudioStream" uid="uid://cxecb03y3p6rt" path="res://src/Assets/SFX/timer.mp3" id="7_85gil"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i18ty"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yj2pg"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p31dn"]
+albedo_color = Color(0.764706, 1, 0.541176, 1)
+emission = Color(0.764706, 1, 0.541176, 1)
+
+[sub_resource type="Animation" id="Animation_w8t1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProgressBar:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ProgressBar:surface_material_override/0:emission")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.764706, 1, 0.541176, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Sprite3D/Emotion:region_rect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(20, 0, 11.084, 10)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Sprite3D/Emotion:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Sprite3D/Emotion:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.273609, -0.0741937, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Sprite3D/Emotion:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Sprite3D/Emotion:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.25, 1.25, 1.25)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%TimerSFX:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%TimerSFX:pitch_scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_fjxwt"]
+resource_name = "emotion_show"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite3D/Emotion:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.195357),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.273609, -0.0741937, 0), Vector3(0.273609, 0.0389052, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite3D/Emotion:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.195357),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sprite3D/Emotion:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.195357, 0.367457, 0.49537, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.25, 1.25, 1.25), Vector3(1.25, 1.25, 1.25), Vector3(1.5, 1.5, 1.5), Vector3(1.2, 1.2, 1.2), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Sprite3D/Emotion:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%TimerSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_p31dn"]
+resource_name = "progress_bar"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.492, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProgressBar:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.001, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ProgressBar:surface_material_override/0:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6.00205, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(0.764706, 1, 0.541176, 1), Color(0.92549, 0.933333, 0.427451, 1), Color(0.898039, 0.313726, 0.313726, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Sprite3D/Emotion:region_rect")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 6.03333, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(20, 0, 11.084, 10), Rect2(31.9, 0, 11.084, 10), Rect2(44, 0, 11.084, 10)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Sprite3D/Emotion:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%TimerSFX:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.0333333, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%TimerSFX:pitch_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 8.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjxwt"]
+_data = {
+&"RESET": SubResource("Animation_w8t1r"),
+&"emotion_show": SubResource("Animation_fjxwt"),
+&"progress_bar": SubResource("Animation_p31dn")
+}
+
+[sub_resource type="Animation" id="Animation_ugyts"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Walk_Anchor/Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Walk_Anchor/Sprite3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Walk_Anchor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/WalkSFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qbk3g"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Walk_Anchor/Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1.8025),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 0.9, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Walk_Anchor/Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.399799),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.0273382, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cts6u"]
+resource_name = "walk_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Walk_Anchor/Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.366667, 0.633333, 0.933333, 1.23333, 1.5, 1.76667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.102253, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0), Vector3(0, 0.102253, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Walk_Anchor:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.3, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/WalkSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_tyni8"]
+resource_name = "walk_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Walk_Anchor/Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.366667, 0.633333, 0.933333, 1.23333, 1.5, 1.76667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.102253, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0), Vector3(0, 0.102253, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Walk_Anchor:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.3, 0, 0), Vector3(2.5, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tyni8"]
+_data = {
+&"RESET": SubResource("Animation_ugyts"),
+&"idle": SubResource("Animation_qbk3g"),
+&"walk_in": SubResource("Animation_cts6u"),
+&"walk_out": SubResource("Animation_tyni8")
+}
+
+[node name="Characters" type="Node3D"]
+script = ExtResource("1_6wvwy")
+
+[node name="Walk_Anchor" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Walk_Anchor"]
+unique_name_in_owner = true
+billboard = 1
+shaded = true
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("2_3hs72")
+
+[node name="Emotion" type="Sprite3D" parent="Walk_Anchor/Sprite3D"]
+unique_name_in_owner = true
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0.273609, -0.0741937, 0)
+visible = false
+modulate = Color(1, 1, 1, 0)
+billboard = 1
+shaded = true
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("3_j603d")
+region_enabled = true
+region_rect = Rect2(20, 0, 11.084, 10)
+
+[node name="ProgressBarTimer" type="Node3D" parent="Walk_Anchor"]
+transform = Transform3D(-1.04445e-08, -0.0398236, -0.0036587, 0.24, -1.74846e-09, 3.43401e-16, -9.84168e-10, -0.00375251, 0.038828, 0.244843, -0.0204689, 0)
+visible = false
+
+[node name="Background" type="MeshInstance3D" parent="Walk_Anchor/ProgressBarTimer"]
+transform = Transform3D(1.03043, 3.71925e-15, -2.77556e-16, 1.22347e-13, 1.1611, -1.49012e-08, -7.10543e-15, 1.49012e-08, 0.897289, 0, 0, 0)
+mesh = SubResource("BoxMesh_i18ty")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_yj2pg")
+
+[node name="ProgressBar" type="MeshInstance3D" parent="Walk_Anchor/ProgressBarTimer"]
+mesh = SubResource("BoxMesh_i18ty")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_p31dn")
+
+[node name="BarAnimationPlayer" type="AnimationPlayer" parent="Walk_Anchor/ProgressBarTimer"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_fjxwt")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_tyni8")
+}
+autoplay = "idle"
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="EmojiSFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("4_ege7m")
+pitch_scale = 2.0
+
+[node name="AngrySFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("5_bfua1")
+volume_db = 20.0
+
+[node name="WalkSFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("6_7evw8")
+
+[node name="TimerSFX" type="AudioStreamPlayer3D" parent="SFX"]
+unique_name_in_owner = true
+stream = ExtResource("7_85gil")

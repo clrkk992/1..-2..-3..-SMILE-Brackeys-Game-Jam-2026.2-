@@ -14,15 +14,15 @@ config/name="1.. 2.. 3.. SMILE!"
 run/main_scene="uid://p25m6aa76m6"
 run/disable_stdout=true
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-SceneTransition="*res://src/Scenes/scene_transition.tscn"
-EventBus="*res://src/Scripts/EventBus.gd"
+SceneTransition="*res://src/Scenes/General/scene_transition.tscn"
+EventBus="*res://src/Scripts/General/EventBus.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-MusicManager="*res://src/Scenes/music_manager.tscn"
-Mouse="*res://src/Scenes/mouse.tscn"
+MusicManager="*res://src/Scenes/General/music_manager.tscn"
 
 [debug]
 
@@ -90,3 +90,4 @@ locale/translations_pot_files=PackedStringArray("res://src/Dialogues/main.dialog
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

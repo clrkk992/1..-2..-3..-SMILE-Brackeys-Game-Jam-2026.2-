@@ -17,20 +17,21 @@ Boss: You must always satisfy all customers
 Boss: Let many customers leave unsatisfied,
 Boss: and [shake rate=50.0 level=30]I WILL FIRE YOU!![/shake]
 You: [wait=0.5][speed=0.5]W-what's g-going on?
-do EventBus.tutorial_started.emit()
 do! MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
-do EventBus.spawn_chars_enabled = true
-do EventBus.character_finished.emit()
+do EventBus.scene_started.emit()
+do! EventBus.spawn_chars_enabled = true
+do! EventBus.character_finished.emit()
 
 => END
 
 ~ dialogue_2
 
+do EventBus.show_wife.emit(false)
 do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
-do EventBus.tutorial_started.emit()
-???: [[Hello|Hey there]]
-You: W-what's this place?
 You: Where am I?
+You: W-what is this place?
+do EventBus.show_wife.emit(true)
+???: [[Hello|Hey there]]
 ???: Don't worry you can trust me
 ???: I'm here to help you
 You: Who are you?
@@ -53,15 +54,14 @@ do! SceneTransition.load_scene("uid://p25m6aa76m6")
 	
 ~ dialogue_3
 
-Notification: (New update in checklist. Please check it out.)
 You: .[wait=0.2].[wait=0.2].
 You: What the... [wait=0.5]I'm back?
 Boss: Why are you dozing off at work, BOY!
 You: I'm so s-sorry, sir
 You: It won't happen again
 Boss: [shake rate=50.0 level=10]GET BACK TO WORK![/shake]
-do EventBus.tutorial_started.emit()
 do MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
+do EventBus.scene_started.emit()
 do EventBus.character_finished.emit()
 
 => END
@@ -69,7 +69,6 @@ do EventBus.character_finished.emit()
 ~ dialogue_4
 
 do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
-do EventBus.tutorial_started.emit()
 You: Wait, what?
 You: I'm back here again
 You: Care to explain everything now?
@@ -105,7 +104,6 @@ do! SceneTransition.load_scene("uid://p25m6aa76m6")
 
 ~ dialogue_5
 
-Notification: (New update in checklist. Please check it out.)
 Boss: I thought I already told you
 Boss: NOT TO SLEEP ON THE JOB!!
 Boss: Just
@@ -114,8 +112,8 @@ Boss: Back
 Boss: To
 Boss: WORK!!
 You: Y-Yes, sir
-do EventBus.tutorial_started.emit()
 do! MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
+do EventBus.scene_started.emit()
 do EventBus.character_finished.emit()
 
 => END
@@ -123,7 +121,6 @@ do EventBus.character_finished.emit()
 ~ dialogue_6
 
 do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
-do EventBus.tutorial_started.emit()
 You: I think it's better to just accept my fate
 You: I deserve this after everything I've done
 You: I don't even wanna live anymore
@@ -154,20 +151,18 @@ do! SceneTransition.load_scene("uid://p25m6aa76m6")
 ~ dialogue_7
 
 do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
-Notification: (New update in checklist. Please check it out.)
 You: I can't give up right now.
 You: I can do this.
-set EventBus.remove_no_one = true
-do EventBus.tutorial_started.emit()
 do! MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
+do EventBus.scene_started.emit()
 do EventBus.character_finished.emit()
 
 => END
 
 ~ dialogue_8
 
+do EventBus.show_wife.emit(false)
 do! MusicManager.play_music("uid://dg8ptcwts4erk", -5.0) #wind
-do EventBus.tutorial_started.emit()
 You: What?
 You: Where is-
 do SceneTransition.load_scene("uid://p25m6aa76m6")
@@ -176,7 +171,6 @@ do SceneTransition.load_scene("uid://p25m6aa76m6")
 
 ~ dialogue_9
 
-Notification: (New update in checklist. Please check it out.)
 Boss: So this was your plan all this time
 Boss: Survive ‘till 5PM and you can finally escape
 Boss: You really believe that
@@ -184,8 +178,8 @@ Boss: You’re more naive than I thought you were
 You: Where is No One.
 Boss: I'll be more worried for myself if I were you
 Boss ‘Cause I’ll make sure that you won’t escape this [shake rate=50.0 level=10]NIGHTMARE![/shake]
-do EventBus.tutorial_started.emit()
 do MusicManager.play_music("uid://dgmc5rovu1wlq", -5.0) #main_music
+do EventBus.scene_started.emit()
 do EventBus.character_finished.emit()
 
 => END
@@ -193,8 +187,7 @@ do EventBus.character_finished.emit()
 ~ dialogue_10
 
 do MusicManager.play_music("uid://cst1ip7prm7ch", -5.0) #sad_music
-set EventBus.remove_no_one = false
-do EventBus.tutorial_started.emit()
+do EventBus.show_wife.emit(true)
 You: [[Hey|Hello]] there
 You: I finally did it
 No One: Thank you for listening to me

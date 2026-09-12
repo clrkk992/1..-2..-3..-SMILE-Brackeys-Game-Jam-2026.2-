@@ -153,7 +153,6 @@ _data = {
 }
 
 [node name="ExampleBalloon" type="CanvasLayer"]
-layer = 100
 script = ExtResource("1_36de5")
 
 [node name="Up" type="Panel" parent="."]
@@ -359,7 +358,10 @@ offset_right = -95.0
 offset_bottom = -13.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(1, 1, 1, 0.392157)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 0)
 theme_override_fonts/font = ExtResource("2_nlsx6")
 theme_override_font_sizes/font_size = 30
 text = "SKIP"
@@ -377,7 +379,6 @@ autoplay = "dramatic_effect"
 
 [node name="TalkSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_1337t")
-volume_db = -20.0
 max_polyphony = 2
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://yoo4pdjpm4qk"
 path.s3tc="res://.godot/imported/clock_2.png-a2473345a989fd18546c5ef9f4cf2cfc.s3tc.ctex"
+path.etc2="res://.godot/imported/clock_2.png-a2473345a989fd18546c5ef9f4cf2cfc.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://src/Assets/Models/Studio/clock_2.png"
-dest_files=["res://.godot/imported/clock_2.png-a2473345a989fd18546c5ef9f4cf2cfc.s3tc.ctex"]
+dest_files=["res://.godot/imported/clock_2.png-a2473345a989fd18546c5ef9f4cf2cfc.s3tc.ctex", "res://.godot/imported/clock_2.png-a2473345a989fd18546c5ef9f4cf2cfc.etc2.ctex"]
 
 [params]
 

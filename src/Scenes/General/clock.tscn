@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvew0hqe0hd74"]
+
+[ext_resource type="Script" uid="uid://cds1heh703u2x" path="res://src/Scripts/General/clock.gd" id="1_i4ihu"]
+[ext_resource type="PackedScene" uid="uid://pcq8ocms05y4" path="res://src/Assets/Models/Studio/clock.glb" id="1_kbcac"]
+[ext_resource type="FontFile" uid="uid://dtty24waxvfeb" path="res://src/Assets/Text/tinypixel.otf" id="2_i4ihu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yvnj0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ssvke"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Clock" type="Node3D"]
+transform = Transform3D(0.792471, 0, 0.60991, 0, 1, 0, -0.60991, 0, 0.792471, 0, 0, 0)
+script = ExtResource("1_i4ihu")
+
+[node name="ClockModel" parent="." instance=ExtResource("1_kbcac")]
+transform = Transform3D(0.0291488, 0, -0.00709548, 0, 0.03, 0, 0.00709548, 0, 0.0291488, 0.125333, -0.120749, -0.246161)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ClockModel"]
+transform = Transform3D(3.08062, 0, 1.86265e-09, 0, 1.35741, 0, 0, 0, -0.014315, 0.0169699, 0.96543, -0.160209)
+mesh = SubResource("BoxMesh_yvnj0")
+surface_material_override/0 = SubResource("StandardMaterial3D_ssvke")
+
+[node name="Label3D" type="Label3D" parent="ClockModel"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0494287, 0.994064, -0.143566)
+text = "8 AM"
+font = ExtResource("2_i4ihu")
+font_size = 150
+
+[node name="Timer" type="Timer" parent="ClockModel/Label3D"]
+wait_time = 60.0
+autostart = true
+
+[connection signal="timeout" from="ClockModel/Label3D/Timer" to="." method="_on_timer_timeout"]

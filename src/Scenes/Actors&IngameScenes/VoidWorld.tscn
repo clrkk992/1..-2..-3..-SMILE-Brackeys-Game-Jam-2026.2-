@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://blef2j7xrd4os"]
+
+[ext_resource type="Script" uid="uid://iwld3d5l10iw" path="res://src/Scripts/Actors&IngameScenes/void_world.gd" id="1_sufpk"]
+[ext_resource type="Texture2D" uid="uid://cllp5lg6gd255" path="res://src/Assets/Characters/ActorA/Void.png" id="4_uc6vr"]
+
+[sub_resource type="Animation" id="Animation_hyfyk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -2.28097)]
+}
+
+[sub_resource type="Animation" id="Animation_q44d3"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.397691),
+"transitions": PackedFloat32Array(1, 1.86607),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 0.9, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.400017),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2.28097), Vector3(0, -0.027, -2.281)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2dsij"]
+_data = {
+&"RESET": SubResource("Animation_hyfyk"),
+&"idle": SubResource("Animation_q44d3")
+}
+
+[sub_resource type="Environment" id="Environment_nxygk"]
+background_mode = 1
+
+[node name="Void" type="Node3D"]
+script = ExtResource("1_sufpk")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0122222, -0.0079952, 0)
+
+[node name="Wife" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.28097)
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("4_uc6vr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wife"]
+libraries = {
+&"": SubResource("AnimationLibrary_2dsij")
+}
+autoplay = "idle"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nxygk")

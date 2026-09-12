@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0mqernmxerdw"]
+
+[ext_resource type="Script" uid="uid://dgq3d57nid6ef" path="res://src/Scripts/Buttons&UI/object_touch.gd" id="1_14enu"]
+
+[node name="ObjectTouch" type="Area3D"]
+script = ExtResource("1_14enu")
+
+[connection signal="input_event" from="." to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_area_3d_mouse_exited"]
